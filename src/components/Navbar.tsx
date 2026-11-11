@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Menu, X, Compass, Instagram } from 'lucide-react';
+import { Phone, Menu, X, Compass } from 'lucide-react';
 import { Language } from '../types/property';
 import { TRANSLATIONS } from '../data/translations';
 
@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<'projects' | 'about' | 'instagram' | 'gallery' | 'contact' | null>(null);
+  const [activeSection, setActiveSection] = useState<'projects' | 'about' | 'gallery' | 'contact' | null>(null);
   const t = TRANSLATIONS[language];
 
   useEffect(() => {
@@ -30,7 +30,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       const contact = document.getElementById('site-visit');
       const gallery = document.getElementById('gallery');
-      const instagram = document.getElementById('instagram');
       const about = document.getElementById('about');
       const showcase = document.getElementById('showcase');
 
@@ -40,8 +39,6 @@ export const Navbar: React.FC<NavbarProps> = ({
         setActiveSection('contact');
       } else if (gallery && scrollPos >= gallery.offsetTop - offset) {
         setActiveSection('gallery');
-      } else if (instagram && scrollPos >= instagram.offsetTop - offset) {
-        setActiveSection('instagram');
       } else if (about && scrollPos >= about.offsetTop - offset) {
         setActiveSection('about');
       } else if (showcase && scrollPos >= showcase.offsetTop - offset) {
@@ -57,12 +54,10 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, [currentRoute]);
 
-  // Navigation items (HOME removed; touching MSP name brings to hero section):
-  // PROJECTS | ABOUT | INSTAGRAM | GALLERY | CONTACT
+  // Navigation items: PROJECTS | ABOUT | GALLERY | CONTACT
   const navItems = [
     { id: 'projects', route: '/', hash: 'showcase', label: language === 'ta' ? 'திட்டங்கள்' : 'PROJECTS' },
     { id: 'about', route: '/', hash: 'about', label: language === 'ta' ? 'எங்களை பற்றி' : 'ABOUT' },
-    { id: 'instagram', route: '/', hash: 'instagram', label: language === 'ta' ? 'இன்ஸ்டாகிராம்' : 'INSTAGRAM' },
     { id: 'gallery', route: '/', hash: 'gallery', label: language === 'ta' ? 'படத்தொகுப்பு' : 'GALLERY' },
     { id: 'contact', route: '/', hash: 'site-visit', label: language === 'ta' ? 'தொடர்புக்கு' : 'CONTACT' },
   ];
@@ -136,7 +131,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                       : 'text-[#460C14]/80 hover:text-[#731622]'
                   }`}
                 >
-                  {item.id === 'instagram' && <Instagram className="w-3.5 h-3.5 shrink-0" />}
                   <span>{item.label}</span>
 
                   {/* Glowing gold underline indicator matching reference image */}
@@ -270,7 +264,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }`}
               >
                 <span>{item.label}</span>
-                {item.id === 'instagram' && <Instagram className="w-4 h-4 text-[#C5A059]" />}
               </a>
             ))}
             <div className="pt-2.5 border-t border-[#E7DFD4] flex flex-col gap-2">

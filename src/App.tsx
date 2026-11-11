@@ -107,7 +107,10 @@ export default function App() {
           onOpenSiteVisit={() => handleOpenSiteVisit()}
         />
 
-        {/* 3. PROPERTY SHOWCASE – FOUR VERTICALLY STACKED PROPERTY IMAGES */}
+        {/* 3. INSTAGRAM REELS SHOWCASE – RIGHT AFTER HERO SECTION */}
+        <InstagramSection language={language} />
+
+        {/* 4. PROPERTY SHOWCASE – FOUR VERTICALLY STACKED PROPERTY IMAGES */}
         <PropertyShowcase
           properties={PROPERTIES}
           language={language}
@@ -116,11 +119,8 @@ export default function App() {
           onOpenCalculator={handleOpenCalculator}
         />
 
-        {/* 4. ABOUT US */}
+        {/* 5. ABOUT US */}
         <AboutSection language={language} />
-
-        {/* 5. INSTAGRAM REELS SHOWCASE – ON THE HOME PAGE */}
-        <InstagramSection language={language} />
 
         {/* 6. PROPERTY GALLERY – CONTINUOUS MOVING REEL */}
         <PropertyGallery language={language} />

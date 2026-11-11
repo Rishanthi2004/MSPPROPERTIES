@@ -91,7 +91,7 @@ export const InstagramReelEmbed: React.FC<InstagramReelEmbedProps> = ({ reel, la
           <iframe
             key={shortcode}
             src={embedUrl}
-            title={reel.title}
+            title={`MSP Reel ${reel.id}`}
             className="w-full h-[580px] sm:h-[640px] border-0 bg-black"
             allowFullScreen
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"

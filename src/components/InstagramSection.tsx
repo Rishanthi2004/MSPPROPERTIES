@@ -1,205 +1,402 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import {
-  Instagram,
-  ChevronLeft,
-  ChevronRight,
-  ExternalLink,
-  MapPin,
-  Film,
-  ArrowRight,
-} from 'lucide-react';
-import { INSTAGRAM_REELS } from '../data/instagramReels';
-import { InstagramReelEmbed } from './InstagramReelEmbed';
-import { Language } from '../types/property';
+import React, { useState, useRef, useEffect, TouchEvent } from 'react';
+import { Play, Pause, Volume2, VolumeX, ChevronLeft, ChevronRight } from 'lucide-react';
+import { INSTAGRAM_REELS, InstagramReel } from '../data/instagramReels';
 
 interface InstagramSectionProps {
-  language: Language;
+  language?: 'en' | 'ta';
 }
 
-export const InstagramSection: React.FC<InstagramSectionProps> = ({ language }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const currentReel = INSTAGRAM_REELS[currentIndex];
-  const totalReels = INSTAGRAM_REELS.length;
+export const InstagramSection: React.FC<InstagramSectionProps> = ({ language = 'en' }) => {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isPlaying, setIsPlaying] = useState<{ [key: number]: boolean }>({});
+  const [isMuted, setIsMuted] = useState<{ [key: number]: boolean }>({
+    0: false,
+    1: false,
+    2: false,
+    3: false,
+  });
+
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const touchStartXRef = useRef<number | null>(null);
+  const touchStartYRef = useRef<number | null>(null);
+
+  // Pause all other videos except the current one
+  const handlePlayVideo = (index: number) => {
+    videoRefs.current.forEach((vid, i) => {
+      if (vid && i !== index) {
+        vid.pause();
+      }
+    });
+
+    setIsPlaying((prev) => {
+      const nextState: { [key: number]: boolean } = {};
+      INSTAGRAM_REELS.forEach((_, i) => {
+        nextState[i] = i === index;
+      });
+      return nextState;
+    });
+
+    const targetVid = videoRefs.current[index];
+    if (targetVid) {
+      targetVid.play().catch(() => {
+        // Autoplay policy fallback
+      });
+    }
+  };
+
+  const handlePauseVideo = (index: number) => {
+    const targetVid = videoRefs.current[index];
+    if (targetVid) {
+      targetVid.pause();
+    }
+    setIsPlaying((prev) => ({ ...prev, [index]: false }));
+  };
+
+  const togglePlay = (index: number) => {
+    if (isPlaying[index]) {
+      handlePauseVideo(index);
+    } else {
+      setActiveIndex(index);
+      handlePlayVideo(index);
+    }
+  };
+
+  const toggleMute = (index: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const vid = videoRefs.current[index];
+    if (vid) {
+      const nextMuted = !vid.muted;
+      vid.muted = nextMuted;
+      setIsMuted((prev) => ({ ...prev, [index]: nextMuted }));
+    }
+  };
+
+  const handleSelectVideo = (newIndex: number) => {
+    // When changing video, pause the current playing video
+    videoRefs.current.forEach((vid) => {
+      if (vid) vid.pause();
+    });
+    setIsPlaying({});
+    setActiveIndex(newIndex);
+  };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? totalReels - 1 : prev - 1));
+    const nextIdx = activeIndex === 0 ? INSTAGRAM_REELS.length - 1 : activeIndex - 1;
+    handleSelectVideo(nextIdx);
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === totalReels - 1 ? 0 : prev + 1));
+    const nextIdx = activeIndex === INSTAGRAM_REELS.length - 1 ? 0 : activeIndex + 1;
+    handleSelectVideo(nextIdx);
   };
 
-  const currentTitle = language === 'ta' ? currentReel.titleTa : currentReel.title;
-  const currentDesc = language === 'ta' ? currentReel.descriptionTa : currentReel.description;
+  // Mobile Touch Swipe Handling
+  const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+    if (touchStartXRef.current === null || touchStartYRef.current === null) return;
+
+    const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
+    const deltaY = e.changedTouches[0].clientY - touchStartYRef.current;
+
+    // Ensure horizontal gesture is stronger than vertical scroll
+    if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX < 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+  };
+
+  // Keyboard navigation when focused in section
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeIndex]);
 
   return (
     <section
       id="instagram"
-      className="py-12 sm:py-16 lg:py-20 bg-[#FAF8F5] text-[#222222] font-sans relative overflow-hidden border-t border-[#E7DFD4]"
+      className="relative py-16 md:py-24 bg-[#FAF8F5] border-t border-[#E8E1D5] overflow-hidden"
     >
-      {/* Background architectural gold accents */}
-      <div className="absolute inset-0 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
-
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          {/* Instagram Account Pill */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#F7EFE1] border border-[#C5A059]/50 text-[#731622] mb-3.5 shadow-2xs">
-            <Instagram className="w-4 h-4 text-[#8F6B28]" />
-            <span className="text-xs font-bold tracking-wider">@msp_properties</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
-            <span className="text-[10px] text-[#8F6B28] font-semibold">Official Channel</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Navigation Bar & Pagination Controls */}
+        <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#E8E1D5]/60">
+          <div className="flex items-center gap-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#731622] inline-block" />
+            <h2 className="text-xl sm:text-2xl font-serif text-[#731622] tracking-wide font-medium">
+              {language === 'ta' ? 'எம்எஸ்பி பிராப்பர்டீஸ் வீடியோக்கள்' : 'MSP Properties Videos'}
+            </h2>
           </div>
 
-          {/* Main Heading */}
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#460C14] mb-3">
-            {language === 'ta' ? 'MSP பிராப்பர்ட்டீஸ் காணொளிகள்' : 'Discover MSP Properties'}
-          </h2>
+          <div className="flex items-center gap-4">
+            {/* Small Pagination Indicator (1/4, 2/4, 3/4, 4/4) */}
+            <span className="text-sm font-semibold tracking-widest text-[#731622] bg-[#731622]/5 px-3 py-1 rounded-full border border-[#C5A059]/40">
+              {activeIndex + 1} / {INSTAGRAM_REELS.length}
+            </span>
 
-          {/* Subtitle */}
-          <p className="text-xs sm:text-base text-[#5C131D]/85 font-light leading-relaxed mb-6 max-w-2xl mx-auto">
-            {language === 'ta'
-              ? 'எங்களின் வீட்டு மனைகள், உள்கட்டமைப்பு மற்றும் சமீபத்திய வீடியோக்களை நேரலையாகப் பாருங்கள்.'
-              : 'Explore our properties, developments and stories through our latest videos.'}
-          </p>
-
-          {/* Follow on Instagram Action Button */}
-          <div className="flex items-center justify-center gap-3">
-            <a
-              href="https://www.instagram.com/msp_properties/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 sm:px-6 py-2 rounded-full bg-gradient-to-r from-[#C5A059] to-[#DCBA77] hover:from-[#DCBA77] hover:to-[#EAD09C] text-[#2E050B] text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg hover:scale-105 cursor-pointer border border-[#EAD09C]"
-            >
-              <Instagram className="w-4 h-4 text-[#2E050B]" />
-              <span>{language === 'ta' ? 'இன்ஸ்டாகிராமில் தொடரவும்' : 'Follow on Instagram'}</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+            {/* Previous & Next Navigation Buttons */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous Video"
+                className="w-10 h-10 rounded-full border border-[#C5A059]/50 bg-white hover:bg-[#731622] text-[#731622] hover:text-[#FAF8F5] transition-all flex items-center justify-center shadow-sm active:scale-95 cursor-pointer"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next Video"
+                className="w-10 h-10 rounded-full border border-[#C5A059]/50 bg-white hover:bg-[#731622] text-[#731622] hover:text-[#FAF8F5] transition-all flex items-center justify-center shadow-sm active:scale-95 cursor-pointer"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* 
-          MAIN VIDEO PLAYER (One-by-One Video Experience with Next/Previous Controls Only)
-        */}
-        <div id="reel-player-anchor" className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl border border-[#E7DFD4] shadow-xl p-4 sm:p-7 lg:p-9 relative">
-            {/* Top Reel Counter & Next/Prev Controls */}
-            <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E7DFD4]">
-              {/* Counter and Dot Progress Indicators */}
-              <div className="flex items-center gap-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#731622]" />
-                <span className="text-xs font-bold tracking-widest text-[#8F6B28] uppercase">
-                  REEL {String(currentIndex + 1).padStart(2, '0')} / {String(totalReels).padStart(2, '0')}
-                </span>
+        {/* ---------------------------------------------------- */}
+        {/* DESKTOP LAYOUT (Four videos in clean horizontal carousel) */}
+        {/* ---------------------------------------------------- */}
+        <div className="hidden md:grid md:grid-cols-4 gap-6 items-stretch">
+          {INSTAGRAM_REELS.map((reel: InstagramReel, index: number) => {
+            const active = activeIndex === index;
+            const playing = isPlaying[index] || false;
+            const muted = isMuted[index] || false;
 
-                {/* Dots indicator for current reel */}
-                <div className="hidden sm:flex items-center gap-1.5 ml-2">
-                  {INSTAGRAM_REELS.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentIndex(idx)}
-                      className={`h-2 rounded-full transition-all cursor-pointer ${
-                        idx === currentIndex
-                          ? 'w-6 bg-[#731622]'
-                          : 'w-2 bg-[#E7DFD4] hover:bg-[#C5A059]'
-                      }`}
-                      title={`Jump to Reel ${idx + 1}`}
-                    />
-                  ))}
+            return (
+              <div
+                key={reel.id}
+                onClick={() => {
+                  if (!active) {
+                    handleSelectVideo(index);
+                  }
+                  togglePlay(index);
+                }}
+                className={`group relative rounded-2xl overflow-hidden bg-black aspect-[9/16] shadow-lg cursor-pointer transition-all duration-300 transform ${
+                  active
+                    ? 'ring-2 ring-[#C5A059] shadow-2xl scale-[1.02]'
+                    : 'opacity-90 hover:opacity-100 hover:scale-[1.01] border border-[#E8E1D5]'
+                }`}
+              >
+                <video
+                  ref={(el) => {
+                    videoRefs.current[index] = el;
+                  }}
+                  src={reel.videoUrl}
+                  poster={reel.posterUrl}
+                  playsInline
+                  loop
+                  preload="metadata"
+                  muted={muted}
+                  onPlay={() => {
+                    videoRefs.current.forEach((v, i) => {
+                      if (v && i !== index) v.pause();
+                    });
+                    setIsPlaying((prev) => {
+                      const nextState: { [key: number]: boolean } = {};
+                      INSTAGRAM_REELS.forEach((_, i) => {
+                        nextState[i] = i === index;
+                      });
+                      return nextState;
+                    });
+                  }}
+                  onPause={() => {
+                    setIsPlaying((prev) => ({ ...prev, [index]: false }));
+                  }}
+                  className="w-full h-full object-cover select-none pointer-events-none"
+                />
+
+                {/* Subtle Gradient Overlay */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none transition-opacity duration-300 ${
+                    playing ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'
+                  }`}
+                />
+
+                {/* Video Play/Pause Overlay Button */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  {!playing && (
+                    <div className="w-16 h-16 rounded-full bg-[#731622]/90 text-[#FAF8F5] border border-[#C5A059] flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-200">
+                      <Play className="w-7 h-7 ml-1 fill-[#FAF8F5]" />
+                    </div>
+                  )}
                 </div>
-              </div>
 
-              {/* Prev & Next Navigation Buttons */}
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={handlePrev}
-                  className="px-3 py-1.5 rounded-full bg-[#FAF8F5] hover:bg-[#5C131D] hover:text-white text-[#460C14] border border-[#E7DFD4] text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs hover:scale-105"
-                  title="Previous Video"
+                {/* Video Controls (Play/Pause & Mute/Unmute) */}
+                <div
+                  className={`absolute bottom-4 left-4 right-4 flex items-center justify-between z-10 transition-opacity duration-200 ${
+                    playing ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'
+                  }`}
                 >
-                  <ChevronLeft className="w-4 h-4" />
-                  <span>Previous</span>
-                </button>
-
-                <button
-                  onClick={handleNext}
-                  className="px-4 py-1.5 rounded-full bg-[#731622] hover:bg-[#5C131D] text-white border border-[#C5A059]/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-xs hover:scale-105"
-                  title="Next Video"
-                >
-                  <span>Next Reel</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-
-            {/* Centered Reel Player with AnimatePresence Smooth Fade */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
-              {/* Instagram Embed Box (7 cols) */}
-              <div className="lg:col-span-7 flex justify-center">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentReel.id}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -12 }}
-                    transition={{ duration: 0.25 }}
-                    className="w-full flex justify-center"
-                  >
-                    <InstagramReelEmbed reel={currentReel} language={language} />
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              {/* Reel Info & Details (5 cols) */}
-              <div className="lg:col-span-5 space-y-4 text-left">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F7EFE1] text-[#731622] text-xs font-semibold border border-[#C5A059]/30">
-                  <Film className="w-3.5 h-3.5 text-[#8F6B28]" />
-                  <span>MSP Featured Reel</span>
-                </div>
-
-                <h3 className="text-lg sm:text-2xl font-bold text-[#460C14] tracking-tight leading-snug">
-                  {currentTitle}
-                </h3>
-
-                <div className="flex items-center gap-1.5 text-xs text-[#5C131D]/80">
-                  <MapPin className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
-                  <span className="font-medium">{currentReel.location}</span>
-                </div>
-
-                <p className="text-xs sm:text-sm text-[#5C131D]/85 leading-relaxed font-light">
-                  {currentDesc}
-                </p>
-
-                {/* Next Reel Quick Action Button */}
-                <div className="pt-2">
                   <button
-                    onClick={handleNext}
-                    className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#C5A059] to-[#DCBA77] hover:from-[#DCBA77] hover:to-[#EAD09C] text-[#2E050B] text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md hover:scale-[1.02] cursor-pointer border border-[#EAD09C]"
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      togglePlay(index);
+                    }}
+                    className="w-9 h-9 rounded-full bg-black/60 hover:bg-[#731622] text-white flex items-center justify-center backdrop-blur-sm transition-colors border border-white/20"
+                    aria-label={playing ? 'Pause' : 'Play'}
                   >
-                    <span>{language === 'ta' ? 'அடுத்த ரீல் பார்க்க' : 'Watch Next Reel'}</span>
-                    <ArrowRight className="w-4 h-4" />
+                    {playing ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={(e) => toggleMute(index, e)}
+                    className="w-9 h-9 rounded-full bg-black/60 hover:bg-[#731622] text-white flex items-center justify-center backdrop-blur-sm transition-colors border border-white/20"
+                    aria-label={muted ? 'Unmute' : 'Mute'}
+                  >
+                    {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                   </button>
                 </div>
-
-                {/* Direct Action */}
-                <div className="pt-3 border-t border-[#E7DFD4] flex flex-col gap-2">
-                  <a
-                    href={currentReel.reelUrl || 'https://www.instagram.com/msp_properties/'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-2 px-3 rounded-lg bg-[#FAF8F5] hover:bg-[#F7EFE1] text-[#731622] text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all border border-[#E7DFD4]"
-                  >
-                    <Instagram className="w-3.5 h-3.5 text-[#8F6B28]" />
-                    <span>Watch on @msp_properties</span>
-                    <ExternalLink className="w-3 h-3 text-[#8F6B28]" />
-                  </a>
-
-                  <p className="text-[11px] text-[#8F6B28] text-center font-medium">
-                    Tap the video above to play audio & controls
-                  </p>
-                </div>
               </div>
+            );
+          })}
+        </div>
+
+        {/* ---------------------------------------------------- */}
+        {/* MOBILE LAYOUT (One video at a time with touch swipe)  */}
+        {/* ---------------------------------------------------- */}
+        <div
+          className="md:hidden relative w-full flex flex-col items-center"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Main Mobile Video Card */}
+          <div className="relative w-full max-w-[320px] aspect-[9/16] rounded-2xl overflow-hidden bg-black shadow-2xl border-2 border-[#C5A059]/40">
+            {INSTAGRAM_REELS.map((reel: InstagramReel, index: number) => {
+              const active = activeIndex === index;
+              const playing = isPlaying[index] || false;
+              const muted = isMuted[index] || false;
+
+              if (!active) return null;
+
+              return (
+                <div
+                  key={reel.id}
+                  onClick={() => togglePlay(index)}
+                  className="relative w-full h-full cursor-pointer"
+                >
+                  <video
+                    ref={(el) => {
+                      videoRefs.current[index] = el;
+                    }}
+                    src={reel.videoUrl}
+                    poster={reel.posterUrl}
+                    playsInline
+                    loop
+                    preload="metadata"
+                    muted={muted}
+                    onPlay={() => {
+                      videoRefs.current.forEach((v, i) => {
+                        if (v && i !== index) v.pause();
+                      });
+                      setIsPlaying((prev) => {
+                        const nextState: { [key: number]: boolean } = {};
+                        INSTAGRAM_REELS.forEach((_, i) => {
+                          nextState[i] = i === index;
+                        });
+                        return nextState;
+                      });
+                    }}
+                    onPause={() => {
+                      setIsPlaying((prev) => ({ ...prev, [index]: false }));
+                    }}
+                    className="w-full h-full object-cover select-none pointer-events-none"
+                  />
+
+                  {/* Gradient Overlay */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none transition-opacity duration-300 ${
+                      playing ? 'opacity-0' : 'opacity-100'
+                    }`}
+                  />
+
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    {!playing && (
+                      <div className="w-16 h-16 rounded-full bg-[#731622]/90 text-[#FAF8F5] border border-[#C5A059] flex items-center justify-center shadow-xl">
+                        <Play className="w-7 h-7 ml-1 fill-[#FAF8F5]" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Bottom Controls */}
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between z-10">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        togglePlay(index);
+                      }}
+                      className="w-10 h-10 rounded-full bg-black/70 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 active:scale-95"
+                      aria-label={playing ? 'Pause' : 'Play'}
+                    >
+                      {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => toggleMute(index, e)}
+                      className="w-10 h-10 rounded-full bg-black/70 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 active:scale-95"
+                      aria-label={muted ? 'Unmute' : 'Mute'}
+                    >
+                      {muted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Mobile Bottom Navigation & Dots */}
+          <div className="flex items-center justify-between w-full max-w-[320px] mt-6 px-2">
+            <button
+              type="button"
+              onClick={handlePrev}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-full border border-[#C5A059]/40 bg-white text-[#731622] font-medium text-xs shadow-sm active:scale-95"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              Prev
+            </button>
+
+            {/* Dots */}
+            <div className="flex items-center gap-2">
+              {INSTAGRAM_REELS.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => handleSelectVideo(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    activeIndex === i ? 'w-6 bg-[#731622]' : 'w-2 bg-[#C5A059]/40'
+                  }`}
+                  aria-label={`Go to video ${i + 1}`}
+                />
+              ))}
             </div>
+
+            <button
+              type="button"
+              onClick={handleNext}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-full border border-[#C5A059]/40 bg-white text-[#731622] font-medium text-xs shadow-sm active:scale-95"
+            >
+              Next
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </div>
