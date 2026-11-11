@@ -5,7 +5,6 @@ import {
   Clock,
   Car,
   Phone,
-  MessageCircle,
   CheckCircle2,
   MapPin,
   Send,
@@ -15,6 +14,7 @@ import {
 } from 'lucide-react';
 import { Property, Language, SiteVisitFormData } from '../types/property';
 import { TRANSLATIONS } from '../data/translations';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface SiteVisitSectionProps {
   properties: Property[];
@@ -157,7 +157,7 @@ export const SiteVisitSection: React.FC<SiteVisitSectionProps> = ({
                   rel="noopener noreferrer"
                   className="flex-1 py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm transition-colors"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <WhatsAppIcon className="w-5 h-5" />
                   <span>WhatsApp Chat</span>
                 </a>
               </div>
@@ -197,7 +197,7 @@ export const SiteVisitSection: React.FC<SiteVisitSectionProps> = ({
                     rel="noopener noreferrer"
                     className="py-3 px-6 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-sm"
                   >
-                    <MessageCircle className="w-4 h-4" />
+                    <WhatsAppIcon className="w-5 h-5" />
                     <span>Send Details to WhatsApp Desk</span>
                   </a>
 

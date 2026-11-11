@@ -1,7 +1,8 @@
 import React from 'react';
-import { Compass, Phone, MessageCircle, Sparkles } from 'lucide-react';
+import { Compass, Phone, Sparkles } from 'lucide-react';
 import { Language } from '../types/property';
 import { TRANSLATIONS } from '../data/translations';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface FinalCTAProps {
   language: Language;
@@ -58,7 +59,7 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({
             rel="noopener noreferrer"
             className="w-full sm:w-auto px-6 py-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2"
           >
-            <MessageCircle className="w-4 h-4" />
+            <WhatsAppIcon className="w-5 h-5" />
             <span>WhatsApp</span>
           </a>
         </div>

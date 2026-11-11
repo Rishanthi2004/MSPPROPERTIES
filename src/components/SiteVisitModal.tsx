@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { X, Calendar, Car, Send, MessageCircle, CheckCircle2, Phone } from 'lucide-react';
+import { X, Calendar, Car, Send, CheckCircle2, Phone } from 'lucide-react';
 import { Property, Language } from '../types/property';
 import { TRANSLATIONS } from '../data/translations';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface SiteVisitModalProps {
   isOpen: boolean;
@@ -101,7 +102,7 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                   rel="noopener noreferrer"
                   className="w-full py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-sm"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <WhatsAppIcon className="w-5 h-5" />
                   <span>Send Confirmation to WhatsApp</span>
                 </a>
 

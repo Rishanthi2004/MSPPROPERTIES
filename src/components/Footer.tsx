@@ -1,8 +1,9 @@
 import React from 'react';
-import { Phone, Mail, MapPin, MessageCircle, ShieldCheck, Heart, ExternalLink } from 'lucide-react';
+import { Phone, Mail, MapPin, ShieldCheck, Heart, ExternalLink } from 'lucide-react';
 import { Language } from '../types/property';
 import { TRANSLATIONS } from '../data/translations';
 import { PROPERTIES } from '../data/properties';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface FooterProps {
   language: Language;
@@ -47,10 +48,10 @@ export const Footer: React.FC<FooterProps> = ({ language }) => {
                 href="https://wa.me/919443210987"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-white/10 hover:bg-[#25D366] text-white transition-colors"
+                className="p-2 rounded-full bg-white/10 hover:bg-[#25D366] text-white transition-colors"
                 title="WhatsApp MSP Properties"
               >
-                <MessageCircle className="w-4 h-4" />
+                <WhatsAppIcon className="w-5 h-5" />
               </a>
               <a
                 href="mailto:contact@mspproperties.in"

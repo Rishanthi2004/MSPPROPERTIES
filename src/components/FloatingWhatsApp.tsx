@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { MessageCircle, X, Instagram } from 'lucide-react';
+import { X, Instagram } from 'lucide-react';
 import { Language } from '../types/property';
 import { INSTAGRAM_ACCOUNT_URL } from '../data/instagramReels';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface FloatingWhatsAppProps {
   language: Language;
@@ -56,13 +57,13 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ language }) 
           href="https://wa.me/919443210987?text=Hello%20MSP%20Properties,%20I%20would%20like%20to%20enquire%20about%20your%20villa%20plots."
           target="_blank"
           rel="noopener noreferrer"
-          className="relative w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer border-2 border-white focus:outline-none"
+          className="relative w-13 h-13 sm:w-14 sm:h-14 flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer focus:outline-none"
           title="Chat on WhatsApp"
           aria-label="Chat on WhatsApp"
         >
           {/* Pulsing radar ripple effect */}
-          <span className="absolute -inset-1 rounded-full bg-[#25D366]/30 animate-ping pointer-events-none" />
-          <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8 fill-white text-[#25D366] relative z-10" />
+          <span className="absolute inset-0.5 rounded-full bg-[#25D366]/30 animate-ping pointer-events-none" />
+          <WhatsAppIcon alt="WhatsApp" className="w-full h-full drop-shadow-xl relative z-10" />
         </a>
       </div>
     </div>

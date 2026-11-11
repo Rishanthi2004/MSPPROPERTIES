@@ -7,7 +7,6 @@ import {
   Calendar,
   Download,
   Phone,
-  MessageCircle,
   Building,
   Droplets,
   Zap,
@@ -15,6 +14,7 @@ import {
   Compass,
 } from 'lucide-react';
 import { Property, Language } from '../types/property';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface ProjectDetailModalProps {
   property: Property | null;
@@ -237,10 +237,10 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="py-2.5 px-3 rounded-lg bg-[#25D366] text-white hover:bg-[#20ba59] transition-colors"
+              className="py-2.5 px-3 rounded-lg bg-[#25D366] text-white hover:bg-[#20ba59] transition-colors flex items-center justify-center"
               title="WhatsApp Layout Query"
             >
-              <MessageCircle className="w-4 h-4" />
+              <WhatsAppIcon className="w-5 h-5" />
             </a>
           </div>
 
