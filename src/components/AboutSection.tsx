@@ -50,9 +50,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ language }) => {
               />
               <div className="p-2 bg-white text-center">
                 <span className="text-[10px] font-bold text-[#460C14] uppercase tracking-wider block">
-                  Kongu Region Corridors
+                  Prime Regional Corridors
                 </span>
-                <span className="text-[9px] text-[#8F6B28]">Coimbatore • Erode • Tirupur</span>
+                <span className="text-[9px] text-[#8F6B28]">Namma Namakkal • Namma Karur • Salem • Erode</span>
               </div>
             </motion.div>
 

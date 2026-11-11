@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, MessageCircle, ShieldCheck, Heart } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, ShieldCheck, Heart, ExternalLink } from 'lucide-react';
 import { Language } from '../types/property';
 import { TRANSLATIONS } from '../data/translations';
 import { PROPERTIES } from '../data/properties';
@@ -129,10 +129,17 @@ export const Footer: React.FC<FooterProps> = ({ language }) => {
               {t.footer.offices}
             </h4>
             <div className="space-y-3 text-xs text-[#FAF8F5]/80 font-light">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
-                <span>{t.footer.cbeOffice}</span>
-              </div>
+              <a
+                href="https://maps.app.goo.gl/oam7PuZEW2iQ2JAp8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-2 hover:text-[#DCBA77] transition-colors group cursor-pointer"
+                title="Open MSP PROPERTIES & BUILDERS on Google Maps"
+              >
+                <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                <span className="underline decoration-[#C5A059]/40 underline-offset-2">{t.footer.cbeOffice}</span>
+                <ExternalLink className="w-3 h-3 text-[#C5A059] shrink-0 mt-0.5" />
+              </a>
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
                 <span>{t.footer.erodeOffice}</span>

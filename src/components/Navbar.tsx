@@ -100,10 +100,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               }
             }}
             className="flex items-center gap-2.5 shrink-0 group cursor-pointer"
-            title="MSP PROPERTIES - Go to Hero Section"
+            title="Go to Hero Section"
           >
             <div
-              className={`w-8 h-8 rounded flex items-center justify-center font-black text-sm tracking-wider transition-all ${
+              className={`w-9 h-9 rounded-md flex items-center justify-center font-black text-sm tracking-wider transition-all ${
                 isDarkHeroHeader
                   ? 'bg-white/15 backdrop-blur-md text-[#EAD09C] border border-white/30 shadow-md group-hover:bg-[#C5A059] group-hover:text-[#2E050B]'
                   : 'bg-[#5C131D] text-[#C5A059] border border-[#C5A059]/40 shadow-xs group-hover:bg-[#731622]'
@@ -111,13 +111,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               MSP
             </div>
-            <span
-              className={`font-bold tracking-wider whitespace-nowrap text-lg sm:text-xl transition-colors ${
-                isDarkHeroHeader ? 'text-white drop-shadow-sm' : 'text-[#460C14] group-hover:text-[#731622]'
-              }`}
-            >
-              MSP PROPERTIES
-            </span>
           </a>
 
           {/* 

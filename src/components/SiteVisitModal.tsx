@@ -29,7 +29,7 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
   const [preferredDate, setPreferredDate] = useState('');
   const [timeSlot, setTimeSlot] = useState('10:00 AM - 01:00 PM');
   const [pickupNeeded, setPickupNeeded] = useState(true);
-  const [pickupCity, setPickupCity] = useState('Coimbatore');
+  const [pickupCity, setPickupCity] = useState('Namakkal');
   const [submitted, setSubmitted] = useState(false);
 
   if (!isOpen) return null;
@@ -210,7 +210,7 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
               {pickupNeeded && (
                 <div className="flex items-center gap-2 text-xs">
                   <span className="text-[#8F6B28] font-semibold">City:</span>
-                  {['Coimbatore', 'Tirupur', 'Erode'].map((city) => (
+                  {['Namakkal', 'Karur', 'Salem', 'Erode'].map((city) => (
                     <button
                       key={city}
                       type="button"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ExternalLink, Instagram, Play, RefreshCw, Volume2 } from 'lucide-react';
-import { InstagramReel, INSTAGRAM_ACCOUNT_URL } from '../data/instagramReels';
+import { ExternalLink, Instagram, RefreshCw, AlertCircle } from 'lucide-react';
+import { InstagramReel } from '../data/instagramReels';
 
 interface InstagramReelEmbedProps {
   reel: InstagramReel;
@@ -20,42 +20,43 @@ declare global {
 export const InstagramReelEmbed: React.FC<InstagramReelEmbedProps> = ({ reel, language }) => {
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [showPoster, setShowPoster] = useState(false);
 
-  // Extract clean reel shortcode (e.g. C8qX5N0yB7R)
-  const extractReelId = (url: string) => {
+  // Extract clean shortcode from URL or reel object
+  const extractShortcode = (url: string) => {
     const match = url.match(/(?:reel|p)\/([A-Za-z0-9_-]+)/);
-    return match ? match[1] : null;
+    return match ? match[1] : reel.shortcode;
   };
 
-  const reelId = extractReelId(reel.reelUrl);
-  const iframeSrc = reelId
-    ? `https://www.instagram.com/reel/${reelId}/embed/?utm_source=ig_web_copy_link`
-    : null;
+  const shortcode = extractShortcode(reel.reelUrl);
+  // Official Instagram embed endpoint for individual post/reel
+  const embedUrl = `https://www.instagram.com/p/${shortcode}/embed/`;
 
   useEffect(() => {
     setIsLoading(true);
     setHasError(false);
-    setShowPoster(false);
 
-    // Inject Instagram embed.js only once
-    const existingScript = document.getElementById('instagram-embed-script');
-    if (!existingScript) {
-      const script = document.createElement('script');
-      script.id = 'instagram-embed-script';
+    // Load official Instagram embed.js script once
+    const SCRIPT_ID = 'instagram-embed-script';
+    let script = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
+
+    if (!script) {
+      script = document.createElement('script');
+      script.id = SCRIPT_ID;
       script.src = 'https://www.instagram.com/embed.js';
       script.async = true;
       script.defer = true;
       script.onload = () => {
         if (window.instgrm) {
-          window.instgrm.Embeds.process();
+          try {
+            window.instgrm.Embeds.process();
+          } catch {
+            // ignore
+          }
         }
-      };
-      script.onerror = () => {
-        // Fallback to iframe
       };
       document.body.appendChild(script);
     } else if (window.instgrm) {
+      // Reprocess embeds when switching reels
       setTimeout(() => {
         try {
           window.instgrm?.Embeds.process();
@@ -67,128 +68,79 @@ export const InstagramReelEmbed: React.FC<InstagramReelEmbedProps> = ({ reel, la
 
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 700);
+    }, 600);
 
     return () => clearTimeout(timer);
-  }, [reel.reelUrl]);
+  }, [reel.reelUrl, shortcode]);
 
   return (
-    <div className="relative w-full max-w-[360px] sm:max-w-[400px] mx-auto bg-black rounded-2xl overflow-hidden shadow-2xl border border-[#C5A059]/40 min-h-[580px] sm:min-h-[640px] flex flex-col justify-between">
-      {/* Top Bar linking to MSP Properties Instagram */}
-      <div className="w-full bg-[#1A0307] px-3.5 py-2.5 border-b border-[#C5A059]/30 flex items-center justify-between z-10">
-        <a
-          href={INSTAGRAM_ACCOUNT_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 group"
-          title="Visit @msp_properties on Instagram"
-        >
-          <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#C5A059] to-[#731622] p-[1.5px] flex items-center justify-center">
-            <div className="w-full h-full bg-[#1A0307] rounded-full flex items-center justify-center">
-              <Instagram className="w-3.5 h-3.5 text-[#EAD09C] group-hover:scale-110 transition-transform" />
-            </div>
-          </div>
-          <div>
-            <span className="font-bold text-xs text-white block leading-none group-hover:text-[#DCBA77] transition-colors">
-              msp_properties
-            </span>
-            <span className="text-[10px] text-[#DCBA77]/80 block font-medium">
-              MSP PROPERTIES • Official
-            </span>
-          </div>
-        </a>
+    <div className="relative w-full max-w-[360px] sm:max-w-[420px] mx-auto bg-black rounded-2xl overflow-hidden shadow-2xl border border-[#C5A059]/40 min-h-[580px] sm:min-h-[640px] flex flex-col justify-center items-center">
+      {/* Loading overlay */}
+      {isLoading && (
+        <div className="absolute inset-0 z-20 bg-[#1A0307]/90 backdrop-blur-xs flex flex-col items-center justify-center text-white gap-3 p-6 text-center">
+          <div className="w-10 h-10 rounded-full border-3 border-[#C5A059] border-t-transparent animate-spin" />
+          <p className="text-xs font-semibold text-[#FAF8F5]/85 uppercase tracking-widest">
+            {language === 'ta' ? 'இன்ஸ்டாகிராம் ரீல் ஏற்றப்படுகிறது...' : 'Loading Instagram Reel...'}
+          </p>
+        </div>
+      )}
 
-        <a
-          href={INSTAGRAM_ACCOUNT_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-2.5 py-1 rounded-full bg-[#731622] hover:bg-[#5C131D] text-white text-[10px] font-bold uppercase tracking-wider transition-colors flex items-center gap-1 border border-[#C5A059]/40"
-        >
-          <span>Follow</span>
-        </a>
-      </div>
-
-      {/* Middle Embed / Video Player Box */}
-      <div className="relative w-full flex-1 min-h-[480px] sm:min-h-[540px] bg-black flex items-center justify-center overflow-hidden">
-        {/* Loading Spinner */}
-        {isLoading && (
-          <div className="absolute inset-0 z-20 bg-[#1A0307]/90 flex flex-col items-center justify-center text-white gap-3 p-6 text-center">
-            <div className="w-9 h-9 rounded-full border-3 border-[#C5A059] border-t-transparent animate-spin" />
-            <p className="text-xs font-semibold text-[#FAF8F5]/80 uppercase tracking-widest">
-              {language === 'ta' ? 'இன்ஸ்டாகிராம் ரீல் ஏற்றப்படுகிறது...' : 'Loading @msp_properties Reel...'}
-            </p>
-          </div>
-        )}
-
-        {/* Iframe Embed or Poster */}
-        {!hasError && iframeSrc && !showPoster ? (
+      {/* Official Instagram Reel Embed */}
+      {!hasError ? (
+        <div className="w-full h-full min-h-[580px] sm:min-h-[640px] flex items-center justify-center bg-black">
           <iframe
-            key={reel.reelUrl}
-            src={iframeSrc}
+            key={shortcode}
+            src={embedUrl}
             title={reel.title}
-            className="w-full h-[520px] sm:h-[570px] border-0 bg-black"
+            className="w-full h-[580px] sm:h-[640px] border-0 bg-black"
             allowFullScreen
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
             scrolling="no"
             onError={() => setHasError(true)}
           />
-        ) : (
-          /* Visual Fallback Poster with real aerial photography and 1-click Instagram launch */
-          <div className="relative w-full h-[520px] sm:h-[570px] bg-black flex flex-col justify-end p-5 overflow-hidden group">
-            <img
-              src={reel.thumbnail}
-              alt={reel.title}
-              className="absolute inset-0 w-full h-full object-cover object-center brightness-90 group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
+        </div>
+      ) : (
+        /* Graceful Fallback if Instagram blocks playback */
+        <div className="w-full h-full min-h-[580px] sm:min-h-[640px] bg-[#1A0307] p-8 flex flex-col items-center justify-center text-center text-white space-y-4">
+          <div className="w-16 h-16 rounded-full bg-[#731622] border border-[#C5A059]/40 flex items-center justify-center mb-2">
+            <Instagram className="w-8 h-8 text-[#EAD09C]" />
+          </div>
 
-            {/* Play Button in Center */}
+          <h4 className="text-base font-bold text-white max-w-xs">
+            {language === 'ta' ? 'ரீல் வீடியோவை காண' : 'Watch Reel on Instagram'}
+          </h4>
+
+          <p className="text-xs text-[#FAF8F5]/70 max-w-xs font-light">
+            {language === 'ta'
+              ? 'இந்த பிரவுசரில் நேரடி ஒளிபரப்பு கட்டுப்படுத்தப்பட்டுள்ளது. அதிகாரப்பூர்வ இன்ஸ்டாகிராமில் பார்க்க கீழே கிளிக் செய்யவும்.'
+              : 'Direct embedded playback is restricted by your browser privacy settings. Open directly on Instagram to watch and listen.'}
+          </p>
+
+          <div className="flex flex-col gap-2.5 pt-2 w-full max-w-xs">
             <a
               href={reel.reelUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute inset-0 flex items-center justify-center z-10"
-              title="Play Video on Instagram"
+              className="w-full py-2.5 px-5 rounded-full bg-gradient-to-r from-[#C5A059] to-[#DCBA77] hover:from-[#DCBA77] hover:to-[#EAD09C] text-[#2E050B] text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
-              <div className="w-16 h-16 rounded-full bg-[#731622]/90 border-2 border-[#EAD09C] flex items-center justify-center shadow-2xl hover:scale-110 hover:bg-[#5C131D] transition-all cursor-pointer">
-                <Play className="w-7 h-7 text-[#EAD09C] fill-current ml-1" />
-              </div>
+              <span>{language === 'ta' ? 'இன்ஸ்டாகிராமில் திறக்க' : 'Open on Instagram'}</span>
+              <ExternalLink className="w-3.5 h-3.5 text-[#2E050B]" />
             </a>
 
-            <div className="relative z-10 text-white space-y-2">
-              <span className="text-[10px] font-bold text-[#EAD09C] uppercase tracking-wider block bg-black/60 px-2 py-0.5 rounded-sm w-fit backdrop-blur-xs">
-                @msp_properties • Reel Video
-              </span>
-              <h4 className="font-bold text-sm text-white line-clamp-2 drop-shadow-sm">
-                {language === 'ta' ? reel.titleTa : reel.title}
-              </h4>
-              <p className="text-[11px] text-white/80 line-clamp-2 font-light">
-                {language === 'ta' ? reel.descriptionTa : reel.description}
-              </p>
-            </div>
+            <button
+              onClick={() => {
+                setHasError(false);
+                setIsLoading(true);
+                setTimeout(() => setIsLoading(false), 500);
+              }}
+              className="w-full py-2 px-4 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+            >
+              <RefreshCw className="w-3 h-3 text-[#DCBA77]" />
+              <span>{language === 'ta' ? 'மீண்டும் முயற்சிக்க' : 'Retry Loading'}</span>
+            </button>
           </div>
-        )}
-      </div>
-
-      {/* Bottom Bar: Action link to @msp_properties */}
-      <div className="w-full bg-[#1A0307] p-3 border-t border-[#C5A059]/30 flex items-center justify-between text-xs text-white z-10">
-        <div className="flex items-center gap-1.5 text-xs text-[#FAF8F5]/90">
-          <Instagram className="w-3.5 h-3.5 text-[#EAD09C]" />
-          <span className="font-semibold text-[11px]">@msp_properties</span>
         </div>
-
-        <div className="flex items-center gap-2">
-          <a
-            href={reel.reelUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[#C5A059] to-[#DCBA77] text-[#2E050B] text-[11px] font-bold uppercase tracking-wider transition-all hover:brightness-110 shadow-xs"
-          >
-            <span>{language === 'ta' ? 'வீடியோ பார்க்க' : 'Watch on Instagram'}</span>
-            <ExternalLink className="w-3 h-3 text-[#2E050B]" />
-          </a>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

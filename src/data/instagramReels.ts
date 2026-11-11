@@ -1,75 +1,63 @@
 export interface InstagramReel {
   id: string;
   reelUrl: string;
-  profileUrl: string;
-  thumbnail: string;
+  shortcode: string;
   title: string;
   titleTa: string;
   description: string;
   descriptionTa: string;
-  location: string;
-  duration?: string;
-  date?: string;
+  location?: string;
 }
 
 /**
- * EDITABLE REEL COLLECTION FOR MSP PROPERTIES
- * All reels connect to official MSP Properties Instagram: https://www.instagram.com/msp_properties/
- * You can edit, add, or replace Reel URLs here anytime.
+ * OFFICIAL MSP PROPERTIES INSTAGRAM REELS
+ * Exact URLs provided by user:
+ * 1. https://www.instagram.com/p/DeqSBKGSsiQ/
+ * 2. https://www.instagram.com/p/DfE3MwxyguN/
+ * 3. https://www.instagram.com/p/Dd5p0xWSB4R/
+ * 4. https://www.instagram.com/p/DcteJzty98D/
  */
 export const INSTAGRAM_ACCOUNT_URL = 'https://www.instagram.com/msp_properties/';
 
 export const INSTAGRAM_REELS: InstagramReel[] = [
   {
     id: 'reel-01',
-    reelUrl: 'https://www.instagram.com/reel/C8qX5N0yB7R/',
-    profileUrl: INSTAGRAM_ACCOUNT_URL,
-    thumbnail: '/assets/aistudio/e4afbe01-3e47-4d62-a793-7a545da84bb7_7e463a75.jpg',
-    title: 'The Grove – Royal Palms Drone Walkthrough',
-    titleTa: 'தி குரோவ் – ராயல் பாம்ஸ் வான்வழி வீடியோ',
-    description: 'Breathtaking aerial footage showcasing 40ft blacktop avenues and avenue royal palm plantation along Avinashi Road corridor.',
-    descriptionTa: 'அவினாசி ரோடு விரைவு வழிச்சாலையில் அமைந்த 40 அடி தார்ச்சாலை மற்றும் அழகிய அரச பனை மரங்கள் நிறைந்த கேட்டட் குடியிருப்பு.',
-    location: 'Avinashi Road Corridor, Erode – Tirupur',
-    duration: '0:45',
-    date: 'Recent',
+    reelUrl: 'https://www.instagram.com/p/DeqSBKGSsiQ/',
+    shortcode: 'DeqSBKGSsiQ',
+    title: 'The Grove – Royal Palms Plotted Development',
+    titleTa: 'தி குரோவ் – ராயல் பாம்ஸ் வீட்டு மனைப் பிரிவு',
+    description: 'Exclusive on-site walkthrough showcasing 40ft blacktop avenues and royal palm trees in Namma Namakkal.',
+    descriptionTa: '40 அடி தார்ச்சாலை மற்றும் அழகிய அரச பனை மரங்கள் நிறைந்த நம்ம நாமக்கல் கேட்டட் குடியிருப்பு வான்வழி வீடியோ.',
+    location: 'Mohanur Road Corridor, Namma Namakkal',
   },
   {
     id: 'reel-02',
-    reelUrl: 'https://www.instagram.com/reel/C9K3mP8xT2q/',
-    profileUrl: INSTAGRAM_ACCOUNT_URL,
-    thumbnail: '/assets/aistudio/8fcb9853-2f8f-4c8e-9428-ac1122023487_48721bf8.jpg',
-    title: 'Serene Valley Estates – Kotagiri Foothills Living',
-    titleTa: 'செரீன் வேலி எஸ்டேட்ஸ் – நீலகிரி அடிவார அழகு',
-    description: 'Experience the cool breeze, perennial fresh spring streams, and mist-covered mountain peaks at our Nilgiri foothills sanctuary.',
-    descriptionTa: 'இதமான குளுமையான வானிலை, வற்றாத ஊற்று நீர் மற்றும் நீலகிரி மலையின் எழில் கொஞ்சும் இயற்கைக் காட்சிகள்.',
-    location: 'Mettupalayam – Kotagiri Foothills, The Nilgiris',
-    duration: '0:58',
-    date: 'Recent',
+    reelUrl: 'https://www.instagram.com/p/DfE3MwxyguN/',
+    shortcode: 'DfE3MwxyguN',
+    title: 'Serene Valley Estates – Kolli Hills Foothills',
+    titleTa: 'செரீன் வேலி எஸ்டேட்ஸ் – கொல்லிமலை அடிவாரம்',
+    description: 'Experience natural mountain streams and cool breezes at our Kolli Hills foothills sanctuary in Namakkal.',
+    descriptionTa: 'இதமான குளுமையான வானிலை மற்றும் நாமக்கல் கொல்லிமலையின் எழில் கொஞ்சும் இயற்கைக் காட்சிகள்.',
+    location: 'Senthamangalam, Kolli Hills Foothills, Namakkal',
   },
   {
     id: 'reel-03',
-    reelUrl: 'https://www.instagram.com/reel/C7z1W2qP9mL/',
-    profileUrl: INSTAGRAM_ACCOUNT_URL,
-    thumbnail: '/assets/aistudio/34bc6433-6e99-4621-916a-73d35c0f7d74_739b0252.jpg',
+    reelUrl: 'https://www.instagram.com/p/Dd5p0xWSB4R/',
+    shortcode: 'Dd5p0xWSB4R',
     title: 'Serenity Shores – Waterfront Living Walkthrough',
-    titleTa: 'செரினிட்டி ஷோர்ஸ் – ஏரிக்கரை எழில் மனைப் பிரிவு',
-    description: 'Sunset stroll along the Sulur lake promenade. Just 12 minutes to Coimbatore International Airport and IT corridors.',
-    descriptionTa: 'சூலூர் ஏரிக்கரையின் இதமான தென்றலும் இயற்கை எழிலும் நிறைந்த பிரீமியம் வீட்டு மனைகள். கோவை விமான நிலையத்திற்கு மிக அருகில்.',
-    location: 'Sulur Lake Promenade, Coimbatore East',
-    duration: '0:50',
-    date: 'Recent',
+    titleTa: 'செரினிட்டி ஷோர்ஸ் – நதிக்கரை எழில் மனைப் பிரிவு',
+    description: 'Promenade walk just minutes from Karur New Bus Stand & Textile Industrial corridor in Namma Karur.',
+    descriptionTa: 'கரூர் புதிய பேருந்து நிலையம் மற்றும் தேசிய நெடுஞ்சாலைக்கு மிக அருகில் அமைந்த பிரீமியம் வீட்டு மனைகள்.',
+    location: 'Amaravathi River Promenade, Namma Karur',
   },
   {
     id: 'reel-04',
-    reelUrl: 'https://www.instagram.com/reel/C5t8K3zJ1vA/',
-    profileUrl: INSTAGRAM_ACCOUNT_URL,
-    thumbnail: '/assets/aistudio/795debf9-181f-4a38-89ac-6790fb058578_76ef772c.jpg',
-    title: 'The Grand Enclave – Luxury Boulevard Entrance',
+    reelUrl: 'https://www.instagram.com/p/DcteJzty98D/',
+    shortcode: 'DcteJzty98D',
+    title: 'The Grand Enclave – Gated Community Tour',
     titleTa: 'தி கிராண்ட் என்கிளேவ் – பிரம்மாண்ட நுழைவு வளைவு',
-    description: 'Tour of our signature Coimbatore plotted development featuring heavy-duty paver roads, green medians, and underground cabling.',
-    descriptionTa: 'அகலமான கான்கிரீட் பேவர் சாலைகள், அழகிய மீடியன்கள் மற்றும் நிலத்தடி மின்கம்பி வசதிகளுடன் கூடிய முதன்மையான வீட்டு மனைத் திட்டம்.',
-    location: 'Coimbatore Region',
-    duration: '1:05',
-    date: 'Recent',
+    description: 'Tour of our signature Salem - Namakkal smart highway plotted development with underground utilities for IT workers.',
+    descriptionTa: 'கான்கிரீட் சாலைகள், அழகிய பூங்காக்கள் மற்றும் ஐடி ஊழியர்களுக்கான ஃபைபர் வசதியுடன் கூடிய சேலம் - நாமக்கல் திட்டம்.',
+    location: 'Salem - Namakkal Smart Corridor, Salem',
   },
 ];

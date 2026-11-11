@@ -10,6 +10,8 @@ import {
   MapPin,
   Send,
   Sparkles,
+  ExternalLink,
+  Navigation,
 } from 'lucide-react';
 import { Property, Language, SiteVisitFormData } from '../types/property';
 import { TRANSLATIONS } from '../data/translations';
@@ -35,7 +37,7 @@ export const SiteVisitSection: React.FC<SiteVisitSectionProps> = ({
     preferredDate: '',
     timeSlot: '10:00 AM - 01:00 PM',
     pickupRequired: true,
-    pickupCity: 'Coimbatore',
+    pickupCity: 'Namakkal',
     comments: '',
   });
 
@@ -347,8 +349,8 @@ export const SiteVisitSection: React.FC<SiteVisitSectionProps> = ({
                       <label className="block text-[11px] font-semibold text-[#8F6B28] uppercase tracking-wider mb-1">
                         {t.siteVisit.pickupCityLabel}
                       </label>
-                      <div className="grid grid-cols-3 gap-2">
-                        {['Coimbatore', 'Tirupur', 'Erode'].map((city) => (
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        {['Namakkal', 'Karur', 'Salem', 'Erode'].map((city) => (
                           <button
                             type="button"
                             key={city}
@@ -392,6 +394,128 @@ export const SiteVisitSection: React.FC<SiteVisitSectionProps> = ({
               </form>
             )}
           </motion.div>
+        </div>
+
+        {/* 
+          OFFICIAL GOOGLE MAPS LOCATION IN CONTACT SECTION
+          Location: MSP PROPERTIES & BUILDERS, Namakkal
+          URL: https://maps.app.goo.gl/oam7PuZEW2iQ2JAp8
+        */}
+        <div className="mt-12 sm:mt-16 bg-white rounded-2xl border border-[#E7DFD4] shadow-md overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            {/* Left Location Information (5 cols) */}
+            <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-gradient-to-br from-[#FAF8F5] to-white border-b lg:border-b-0 lg:border-r border-[#E7DFD4]">
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F7EFE1] border border-[#C5A059]/40 text-[#8F6B28] mb-3">
+                  <MapPin className="w-3.5 h-3.5 text-[#731622]" />
+                  <span className="text-[10px] font-bold tracking-widest uppercase">
+                    {language === 'ta' ? 'அதிகாரப்பூர்வ அலுவலக முகவரி' : 'OFFICIAL OFFICE LOCATION'}
+                  </span>
+                </div>
+
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#460C14] mb-2">
+                  MSP PROPERTIES & BUILDERS
+                </h3>
+
+                <p className="text-xs sm:text-sm text-[#5C131D]/80 leading-relaxed mb-6 font-light">
+                  {language === 'ta'
+                    ? 'எங்கள் தலைமை அலுவலகத்திற்கு நேரில் வருகை தந்து DTCP அப்ரூவல் வரைபடங்கள், பட்டா ஆவணங்கள் மற்றும் மனை விபரங்களை நேரடியாக சரிபார்க்கலாம்.'
+                    : 'Visit our central office in Namakkal to inspect DTCP master layout blueprints, computer patta title deeds, and meet directly with our land development team.'}
+                </p>
+
+                <div className="space-y-4 text-xs text-[#460C14]">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#F7EFE1] flex items-center justify-center text-[#731622] shrink-0 mt-0.5">
+                      <MapPin className="w-4 h-4 text-[#8F6B28]" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-xs text-[#460C14]">
+                        {language === 'ta' ? 'அலுவலக முகவரி' : 'Office Address'}
+                      </p>
+                      <p className="text-[11px] text-[#5C131D]/80 leading-relaxed">
+                        MSP PROPERTIES & BUILDERS, S P Pudur, Near Karai Road / Trichy Main Road, Namakkal, Tamil Nadu - 637001
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#F7EFE1] flex items-center justify-center text-[#731622] shrink-0 mt-0.5">
+                      <Clock className="w-4 h-4 text-[#8F6B28]" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-xs text-[#460C14]">
+                        {language === 'ta' ? 'பணி நேரம்' : 'Office Hours'}
+                      </p>
+                      <p className="text-[11px] text-[#5C131D]/80">
+                        {language === 'ta'
+                          ? 'திங்கள் – ஞாயிறு: காலை 8:30 முதல் இரவு 8:00 வரை (7 நாட்களும் செயல்படும்)'
+                          : 'Monday – Sunday: 8:30 AM to 8:00 PM (Site visits open all 7 days)'}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#F7EFE1] flex items-center justify-center text-[#731622] shrink-0 mt-0.5">
+                      <Phone className="w-4 h-4 text-[#8F6B28]" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-xs text-[#460C14]">
+                        {language === 'ta' ? 'நேரடி அழைப்பு' : 'Direct Helpline'}
+                      </p>
+                      <p className="text-[11px] text-[#5C131D]/80 font-medium">
+                        +91 94432 10987 / +91 98421 54321
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6 mt-6 border-t border-[#E7DFD4] flex flex-col sm:flex-row gap-2.5">
+                <a
+                  href="https://maps.app.goo.gl/oam7PuZEW2iQ2JAp8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-2.5 px-4 rounded-xl bg-[#731622] hover:bg-[#5C131D] text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-xs cursor-pointer"
+                >
+                  <MapPin className="w-3.5 h-3.5 text-[#EAD09C]" />
+                  <span>{language === 'ta' ? 'கூகுள் மேப்பில் பார்க்க' : 'Open in Google Maps'}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+
+                <a
+                  href="https://maps.google.com/maps/dir//11.2208864,78.1587693/@11.2208864,78.1587693,16z"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-2.5 px-4 rounded-xl bg-white hover:bg-[#FAF8F5] text-[#731622] border border-[#E7DFD4] text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-2xs cursor-pointer"
+                >
+                  <Navigation className="w-3.5 h-3.5 text-[#8F6B28]" />
+                  <span>{language === 'ta' ? 'வழித்தடம் பார்க்க' : 'Get Directions'}</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Right Interactive Embedded Google Map (7 cols) */}
+            <div className="lg:col-span-7 h-[340px] sm:h-[420px] lg:h-auto min-h-[340px] relative bg-[#E7DFD4]">
+              <iframe
+                title="MSP PROPERTIES & BUILDERS Google Map Location"
+                src="https://maps.google.com/maps?q=11.2208864,78.1587693&hl=en&z=16&output=embed"
+                className="w-full h-full border-0 absolute inset-0"
+                loading="lazy"
+                allowFullScreen
+              />
+              <div className="absolute top-3 right-3 z-10">
+                <a
+                  href="https://maps.app.goo.gl/oam7PuZEW2iQ2JAp8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#460C14] hover:text-[#731622] text-[11px] font-bold border border-[#E7DFD4] shadow-md flex items-center gap-1.5 transition-colors"
+                >
+                  <ExternalLink className="w-3 h-3 text-[#C5A059]" />
+                  <span>{language === 'ta' ? 'முழு மேப்' : 'View Full Map'}</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
