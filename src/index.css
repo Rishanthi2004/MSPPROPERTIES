@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-maroon-950: #2E050B;
+  --color-maroon-900: #460C14;
+  --color-maroon-800: #5C131D;
+  --color-maroon-700: #731622;
+  --color-maroon-600: #8E1F2E;
+  --color-gold-700: #8F6B28;
+  --color-gold-600: #A8813B;
+  --color-gold-500: #C5A059;
+  --color-gold-400: #DCBA77;
+  --color-gold-300: #EAD09C;
+  --color-gold-100: #F7EFE1;
+  --color-gold-50: #FAF5ED;
+  --color-ivory-50: #FCFBF9;
+  --color-ivory-100: #FAF8F5;
+  --color-ivory-200: #F4EFE8;
+  --color-ivory-300: #E7DFD4;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 36s linear infinite;
+}
+
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* Custom scrollbar and luxury styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C5A059;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #731622;
+}

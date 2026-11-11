@@ -1,0 +1,6 @@
+{
+  "name": "MSP PROPERTIES - Premium Plotted Developments",
+  "description": "Discover thoughtfully planned villa plots and gated residential communities across Coimbatore, Erode, Tirupur, and the Nilgiris foothills.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
