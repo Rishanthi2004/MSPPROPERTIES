@@ -75,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isDarkHeroHeader
           ? 'bg-gradient-to-b from-black/70 via-black/35 to-transparent border-b border-white/10 py-3.5 text-white'
-          : 'bg-[#FAF8F5]/95 backdrop-blur-md shadow-xs border-b border-[#E7DFD4] py-2.5 text-[#460C14]'
+          : 'bg-[#FAF8F5]/95 backdrop-blur-md shadow-xs border-b border-[#E7DFD4] py-2.5 text-[#520B0B]'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,15 +97,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex items-center gap-2.5 shrink-0 group cursor-pointer"
             title="Go to Hero Section"
           >
-            <div
-              className={`w-9 h-9 rounded-md flex items-center justify-center font-black text-sm tracking-wider transition-all ${
-                isDarkHeroHeader
-                  ? 'bg-white/15 backdrop-blur-md text-[#EAD09C] border border-white/30 shadow-md group-hover:bg-[#C5A059] group-hover:text-[#2E050B]'
-                  : 'bg-[#5C131D] text-[#C5A059] border border-[#C5A059]/40 shadow-xs group-hover:bg-[#731622]'
-              }`}
-            >
-              MSP
-            </div>
+            <img
+              src="/assets/msp-logo.png"
+              alt="Success MSP Properties"
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-contain shadow-md ring-1 ring-[#C5A059]/50 transition-transform duration-200 group-hover:scale-105"
+            />
           </a>
 
           {/* 
@@ -127,8 +123,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                         ? 'text-[#F5D580] font-bold drop-shadow-[0_2px_8px_rgba(245,213,128,0.4)]'
                         : 'text-white/85 hover:text-white hover:drop-shadow-sm'
                       : isActive
-                      ? 'text-[#731622] font-bold'
-                      : 'text-[#460C14]/80 hover:text-[#731622]'
+                      ? 'text-[#881616] font-bold'
+                      : 'text-[#520B0B]/80 hover:text-[#881616]'
                   }`}
                 >
                   <span>{item.label}</span>
@@ -139,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-[2.5px] rounded-full transition-all ${
                         isDarkHeroHeader
                           ? 'bg-gradient-to-r from-transparent via-[#F5D580] to-transparent shadow-[0_0_8px_#F5D580]'
-                          : 'bg-[#731622]'
+                          : 'bg-[#881616]'
                       }`}
                     />
                   )}
@@ -163,11 +159,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className={`px-2.5 py-0.5 text-[10px] font-bold rounded-full transition-all ${
                   language === 'en'
                     ? isDarkHeroHeader
-                      ? 'bg-white text-[#2E050B] shadow-xs'
-                      : 'bg-[#5C131D] text-white shadow-xs'
+                      ? 'bg-white text-[#380606] shadow-xs'
+                      : 'bg-[#6E1010] text-white shadow-xs'
                     : isDarkHeroHeader
                     ? 'text-white/80 hover:text-white'
-                    : 'text-[#460C14] hover:text-[#731622]'
+                    : 'text-[#520B0B] hover:text-[#881616]'
                 }`}
                 title="English"
               >
@@ -178,11 +174,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className={`px-2.5 py-0.5 text-[10px] font-bold rounded-full transition-all ${
                   language === 'ta'
                     ? isDarkHeroHeader
-                      ? 'bg-white text-[#2E050B] shadow-xs'
-                      : 'bg-[#5C131D] text-white shadow-xs'
+                      ? 'bg-white text-[#380606] shadow-xs'
+                      : 'bg-[#6E1010] text-white shadow-xs'
                     : isDarkHeroHeader
                     ? 'text-white/80 hover:text-white'
-                    : 'text-[#460C14] hover:text-[#731622]'
+                    : 'text-[#520B0B] hover:text-[#881616]'
                 }`}
                 title="தமிழ்"
               >
@@ -196,10 +192,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               className={`hidden md:flex items-center gap-1.5 px-3 py-1 text-[11px] font-semibold rounded-full border transition-all whitespace-nowrap ${
                 isDarkHeroHeader
                   ? 'text-white bg-white/10 hover:bg-white/20 border-white/20 backdrop-blur-xs'
-                  : 'text-[#5C131D] bg-[#F7EFE1] hover:bg-[#EAD09C]/40 border-[#C5A059]/40'
+                  : 'text-[#6E1010] bg-[#F7EFE1] hover:bg-[#EAD09C]/40 border-[#C5A059]/40'
               }`}
             >
-              <Phone className={`w-3 h-3 ${isDarkHeroHeader ? 'text-[#F5D580]' : 'text-[#731622]'}`} />
+              <Phone className={`w-3 h-3 ${isDarkHeroHeader ? 'text-[#F5D580]' : 'text-[#881616]'}`} />
               <span>+91 94432 10987</span>
             </a>
 
@@ -214,8 +210,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               className={`px-4 py-1.5 text-[11px] uppercase tracking-wider font-bold rounded-full transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap shadow-xs ${
                 isDarkHeroHeader
-                  ? 'bg-[#C5A059] hover:bg-[#DCBA77] text-[#2E050B] border border-[#EAD09C] shadow-md hover:scale-105'
-                  : 'bg-[#731622] hover:bg-[#5C131D] text-[#FAF8F5] border border-[#C5A059]/40'
+                  ? 'bg-[#C5A059] hover:bg-[#DCBA77] text-[#380606] border border-[#EAD09C] shadow-md hover:scale-105'
+                  : 'bg-[#881616] hover:bg-[#6E1010] text-[#FAF8F5] border border-[#C5A059]/40'
               }`}
             >
               <Compass className="w-3 h-3" />
@@ -230,7 +226,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className={`px-2 py-0.5 text-[10px] font-bold rounded border ${
                 isDarkHeroHeader
                   ? 'text-white bg-white/15 border-white/25'
-                  : 'text-[#5C131D] bg-[#F7EFE1] border-[#C5A059]/40'
+                  : 'text-[#6E1010] bg-[#F7EFE1] border-[#C5A059]/40'
               }`}
             >
               {language === 'en' ? 'தமிழ்' : 'EN'}
@@ -238,7 +234,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`p-1.5 rounded-md transition-colors ${
-                isDarkHeroHeader ? 'text-white hover:bg-white/10' : 'text-[#460C14] hover:bg-[#F4EFE8]'
+                isDarkHeroHeader ? 'text-white hover:bg-white/10' : 'text-[#520B0B] hover:bg-[#F4EFE8]'
               }`}
               aria-label="Toggle menu"
             >
@@ -250,7 +246,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-[#FAF8F5] border-b border-[#E7DFD4] px-4 pt-2.5 pb-5 shadow-2xl animate-in slide-in-from-top-2 duration-150 text-[#460C14]">
+        <div className="lg:hidden bg-[#FAF8F5] border-b border-[#E7DFD4] px-4 pt-2.5 pb-5 shadow-2xl animate-in slide-in-from-top-2 duration-150 text-[#520B0B]">
           <nav className="flex flex-col space-y-2 pt-1">
             {navItems.map((item) => (
               <a
@@ -259,8 +255,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={(e) => handleItemClick(e, item)}
                 className={`px-3 py-2 text-xs uppercase tracking-wider font-semibold rounded-md transition-colors flex items-center justify-between ${
                   activeSection === item.id
-                    ? 'bg-[#F7EFE1] text-[#731622] font-bold'
-                    : 'text-[#460C14] hover:bg-[#F4EFE8]'
+                    ? 'bg-[#F7EFE1] text-[#881616] font-bold'
+                    : 'text-[#520B0B] hover:bg-[#F4EFE8]'
                 }`}
               >
                 <span>{item.label}</span>
@@ -269,9 +265,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="pt-2.5 border-t border-[#E7DFD4] flex flex-col gap-2">
               <a
                 href="tel:+919443210987"
-                className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-[#5C131D] bg-[#F7EFE1] border border-[#C5A059]/40 rounded-lg"
+                className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-[#6E1010] bg-[#F7EFE1] border border-[#C5A059]/40 rounded-lg"
               >
-                <Phone className="w-3.5 h-3.5 text-[#731622]" />
+                <Phone className="w-3.5 h-3.5 text-[#881616]" />
                 <span>Call +91 94432 10987</span>
               </a>
               <button
@@ -283,7 +279,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onOpenSiteVisit();
                   }
                 }}
-                className="w-full py-2.5 text-xs uppercase tracking-wider font-bold bg-[#731622] text-[#FAF8F5] rounded-lg shadow-sm"
+                className="w-full py-2.5 text-xs uppercase tracking-wider font-bold bg-[#881616] text-[#FAF8F5] rounded-lg shadow-sm"
               >
                 {t.nav.siteVisit}
               </button>

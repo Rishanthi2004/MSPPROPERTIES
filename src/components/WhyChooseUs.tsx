@@ -22,15 +22,15 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ language }) => {
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'FileCheck2':
-        return <FileCheck2 className="w-5 h-5 text-[#731622]" />;
+        return <FileCheck2 className="w-5 h-5 text-[#881616]" />;
       case 'ShieldCheck':
         return <ShieldCheck className="w-5 h-5 text-[#8F6B28]" />;
       case 'TrendingUp':
-        return <TrendingUp className="w-5 h-5 text-[#731622]" />;
+        return <TrendingUp className="w-5 h-5 text-[#881616]" />;
       case 'Wrench':
         return <Wrench className="w-5 h-5 text-[#8F6B28]" />;
       case 'Building2':
-        return <Building2 className="w-5 h-5 text-[#731622]" />;
+        return <Building2 className="w-5 h-5 text-[#881616]" />;
       default:
         return <Award className="w-5 h-5 text-[#8F6B28]" />;
     }
@@ -48,17 +48,17 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ language }) => {
           className="text-center max-w-2xl mx-auto mb-12 lg:mb-16"
         >
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F7EFE1] border border-[#C5A059]/40 text-[#8F6B28] mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#731622]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#881616]" />
             <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
               {t.whyUs.tag}
             </span>
           </div>
 
-          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#460C14] tracking-wide mb-3">
+          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#520B0B] tracking-wide mb-3">
             {t.whyUs.title}
           </h2>
 
-          <p className="text-xs sm:text-sm text-[#5C131D]/80 leading-relaxed font-light">
+          <p className="text-xs sm:text-sm text-[#6E1010]/80 leading-relaxed font-light">
             {t.whyUs.subtitle}
           </p>
         </motion.div>
@@ -83,7 +83,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ language }) => {
                 className="bg-white p-6 rounded-xl border border-[#E7DFD4] shadow-2xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden"
               >
                 {/* Subtle top gold accent line on hover */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#731622] via-[#C5A059] to-[#731622] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#881616] via-[#C5A059] to-[#881616] opacity-0 group-hover:opacity-100 transition-opacity" />
 
                 <div className="w-10 h-10 rounded-lg bg-[#FAF8F5] border border-[#E7DFD4] flex items-center justify-center mb-4 group-hover:bg-[#F7EFE1] transition-colors shadow-2xs">
                   {getIcon(point.icon)}
@@ -93,12 +93,12 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ language }) => {
                   <span className="text-[10px] font-bold text-[#8F6B28] tracking-widest uppercase">
                     0{idx + 1}
                   </span>
-                  <h3 className="font-serif text-lg sm:text-xl font-bold text-[#460C14] tracking-wide">
+                  <h3 className="font-serif text-lg sm:text-xl font-bold text-[#520B0B] tracking-wide">
                     {title}
                   </h3>
                 </div>
 
-                <p className="text-xs text-[#5C131D]/80 leading-relaxed font-light">
+                <p className="text-xs text-[#6E1010]/80 leading-relaxed font-light">
                   {desc}
                 </p>
               </motion.div>

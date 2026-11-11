@@ -77,7 +77,7 @@ export const InstagramReelEmbed: React.FC<InstagramReelEmbedProps> = ({ reel, la
     <div className="relative w-full max-w-[360px] sm:max-w-[420px] mx-auto bg-black rounded-2xl overflow-hidden shadow-2xl border border-[#C5A059]/40 min-h-[580px] sm:min-h-[640px] flex flex-col justify-center items-center">
       {/* Loading overlay */}
       {isLoading && (
-        <div className="absolute inset-0 z-20 bg-[#1A0307]/90 backdrop-blur-xs flex flex-col items-center justify-center text-white gap-3 p-6 text-center">
+        <div className="absolute inset-0 z-20 bg-[#240404]/90 backdrop-blur-xs flex flex-col items-center justify-center text-white gap-3 p-6 text-center">
           <div className="w-10 h-10 rounded-full border-3 border-[#C5A059] border-t-transparent animate-spin" />
           <p className="text-xs font-semibold text-[#FAF8F5]/85 uppercase tracking-widest">
             {language === 'ta' ? 'இன்ஸ்டாகிராம் ரீல் ஏற்றப்படுகிறது...' : 'Loading Instagram Reel...'}
@@ -101,8 +101,8 @@ export const InstagramReelEmbed: React.FC<InstagramReelEmbedProps> = ({ reel, la
         </div>
       ) : (
         /* Graceful Fallback if Instagram blocks playback */
-        <div className="w-full h-full min-h-[580px] sm:min-h-[640px] bg-[#1A0307] p-8 flex flex-col items-center justify-center text-center text-white space-y-4">
-          <div className="w-16 h-16 rounded-full bg-[#731622] border border-[#C5A059]/40 flex items-center justify-center mb-2">
+        <div className="w-full h-full min-h-[580px] sm:min-h-[640px] bg-[#240404] p-8 flex flex-col items-center justify-center text-center text-white space-y-4">
+          <div className="w-16 h-16 rounded-full bg-[#881616] border border-[#C5A059]/40 flex items-center justify-center mb-2">
             <Instagram className="w-8 h-8 text-[#EAD09C]" />
           </div>
 
@@ -121,10 +121,10 @@ export const InstagramReelEmbed: React.FC<InstagramReelEmbedProps> = ({ reel, la
               href={reel.reelUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-2.5 px-5 rounded-full bg-gradient-to-r from-[#C5A059] to-[#DCBA77] hover:from-[#DCBA77] hover:to-[#EAD09C] text-[#2E050B] text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-2.5 px-5 rounded-full bg-gradient-to-r from-[#C5A059] to-[#DCBA77] hover:from-[#DCBA77] hover:to-[#EAD09C] text-[#380606] text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>{language === 'ta' ? 'இன்ஸ்டாகிராமில் திறக்க' : 'Open on Instagram'}</span>
-              <ExternalLink className="w-3.5 h-3.5 text-[#2E050B]" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#380606]" />
             </a>
 
             <button

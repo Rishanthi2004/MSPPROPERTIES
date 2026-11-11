@@ -22,7 +22,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   };
 
   return (
-    <section id="home" className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#2E050B]">
+    <section id="home" className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#380606]">
       {/* 
         CRITICAL REQUIREMENT:
         ONE SINGLE FULL-SCREEN HERO IMAGE.
@@ -36,7 +36,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           className="w-full h-full object-cover object-center scale-[1.01] brightness-[1.03] contrast-[1.04] transform transition-transform duration-1000 ease-out"
         />
         {/* Subtle gradient overlay to keep text readable while showcasing the aerial layout clearly */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2E050B]/85 via-[#2E050B]/35 to-black/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#380606]/85 via-[#380606]/35 to-black/20 pointer-events-none" />
       </div>
 
       {/* Spacer to push content down below fixed single-line navbar */}
@@ -61,7 +61,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <button
               onClick={handleScrollToProjects}
-              className="px-7 py-3.5 rounded-full bg-[#C5A059] hover:bg-[#DCBA77] text-[#2E050B] font-bold text-sm tracking-wider uppercase transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2 border border-[#EAD09C]"
+              className="px-7 py-3.5 rounded-full bg-[#C5A059] hover:bg-[#DCBA77] text-[#380606] font-bold text-sm tracking-wider uppercase transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2 border border-[#EAD09C]"
             >
               <span>{t.hero.btnExplore}</span>
               <ArrowDown className="w-4 h-4" />
@@ -83,50 +83,50 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 divide-y md:divide-y-0 md:divide-x divide-[#E7DFD4]">
             <div className="flex items-center gap-3 py-1 md:py-0 md:px-4">
-              <div className="w-9 h-9 rounded-full bg-[#F7EFE1] flex items-center justify-center text-[#731622] shrink-0">
+              <div className="w-9 h-9 rounded-full bg-[#F7EFE1] flex items-center justify-center text-[#881616] shrink-0">
                 <ShieldCheck className="w-5 h-5 text-[#8F6B28]" />
               </div>
               <div>
-                <p className="font-serif font-bold text-lg sm:text-xl text-[#460C14] leading-tight">
+                <p className="font-serif font-bold text-lg sm:text-xl text-[#520B0B] leading-tight">
                   15+ Years
                 </p>
-                <p className="text-xs text-[#5C131D]/80">{t.hero.stats.years}</p>
+                <p className="text-xs text-[#6E1010]/80">{t.hero.stats.years}</p>
               </div>
             </div>
 
             <div className="flex items-center gap-3 py-1 md:py-0 md:px-4">
-              <div className="w-9 h-9 rounded-full bg-[#F7EFE1] flex items-center justify-center text-[#731622] shrink-0">
+              <div className="w-9 h-9 rounded-full bg-[#F7EFE1] flex items-center justify-center text-[#881616] shrink-0">
                 <Compass className="w-5 h-5 text-[#8F6B28]" />
               </div>
               <div>
-                <p className="font-serif font-bold text-lg sm:text-xl text-[#460C14] leading-tight">
+                <p className="font-serif font-bold text-lg sm:text-xl text-[#520B0B] leading-tight">
                   45+ Layouts
                 </p>
-                <p className="text-xs text-[#5C131D]/80">{t.hero.stats.layouts}</p>
+                <p className="text-xs text-[#6E1010]/80">{t.hero.stats.layouts}</p>
               </div>
             </div>
 
             <div className="flex items-center gap-3 py-1 md:py-0 md:px-4">
-              <div className="w-9 h-9 rounded-full bg-[#F7EFE1] flex items-center justify-center text-[#731622] shrink-0">
+              <div className="w-9 h-9 rounded-full bg-[#F7EFE1] flex items-center justify-center text-[#881616] shrink-0">
                 <Sparkles className="w-5 h-5 text-[#8F6B28]" />
               </div>
               <div>
-                <p className="font-serif font-bold text-lg sm:text-xl text-[#460C14] leading-tight">
+                <p className="font-serif font-bold text-lg sm:text-xl text-[#520B0B] leading-tight">
                   4,200+
                 </p>
-                <p className="text-xs text-[#5C131D]/80">{t.hero.stats.families}</p>
+                <p className="text-xs text-[#6E1010]/80">{t.hero.stats.families}</p>
               </div>
             </div>
 
             <div className="flex items-center gap-3 py-1 md:py-0 md:px-4">
-              <div className="w-9 h-9 rounded-full bg-[#F7EFE1] flex items-center justify-center text-[#731622] shrink-0">
-                <ShieldCheck className="w-5 h-5 text-[#731622]" />
+              <div className="w-9 h-9 rounded-full bg-[#F7EFE1] flex items-center justify-center text-[#881616] shrink-0">
+                <ShieldCheck className="w-5 h-5 text-[#881616]" />
               </div>
               <div>
-                <p className="font-serif font-bold text-lg sm:text-xl text-[#460C14] leading-tight">
+                <p className="font-serif font-bold text-lg sm:text-xl text-[#520B0B] leading-tight">
                   100% Clear
                 </p>
-                <p className="text-xs text-[#5C131D]/80">{t.hero.stats.legal}</p>
+                <p className="text-xs text-[#6E1010]/80">{t.hero.stats.legal}</p>
               </div>
             </div>
           </div>

@@ -19,7 +19,7 @@ export const InstagramPage: React.FC<InstagramPageProps> = ({
         <button
           type="button"
           onClick={onBackToHome}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-[#731622] text-[#731622] hover:text-[#FAF8F5] border border-[#C5A059]/40 text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-95"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-[#881616] text-[#881616] hover:text-[#FAF8F5] border border-[#C5A059]/40 text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-95"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>{language === 'ta' ? 'முகப்பு பக்கத்திற்கு செல்ல' : 'Back to Home'}</span>

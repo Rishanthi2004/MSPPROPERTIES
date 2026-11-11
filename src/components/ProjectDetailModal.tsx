@@ -50,32 +50,32 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative max-w-4xl w-full bg-[#FAF8F5] rounded-2xl overflow-hidden border border-[#C5A059]/40 shadow-2xl my-auto text-[#460C14]"
+        className="relative max-w-4xl w-full bg-[#FAF8F5] rounded-2xl overflow-hidden border border-[#C5A059]/40 shadow-2xl my-auto text-[#520B0B]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-30 p-2 rounded-full bg-black/60 hover:bg-[#731622] text-white transition-colors cursor-pointer shadow-md"
+          className="absolute top-4 right-4 z-30 p-2 rounded-full bg-black/60 hover:bg-[#881616] text-white transition-colors cursor-pointer shadow-md"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Hero Banner */}
-        <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-[#2E050B]">
+        <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-[#380606]">
           <img
             src={property.image}
             alt={name}
             className="w-full h-full object-cover object-center brightness-[1.02]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2E050B]/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#380606]/70 via-transparent to-transparent" />
 
           {/* Badges on image */}
           <div className="absolute top-4 left-4 flex gap-2">
-            <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-[#5C131D] text-white rounded-full border border-[#C5A059]/40">
+            <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-[#6E1010] text-white rounded-full border border-[#C5A059]/40">
               {category}
             </span>
-            <span className="px-3 py-1 text-xs font-semibold bg-white/95 text-[#460C14] rounded-full flex items-center gap-1 shadow-sm">
+            <span className="px-3 py-1 text-xs font-semibold bg-white/95 text-[#520B0B] rounded-full flex items-center gap-1 shadow-sm">
               <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
               <span>{property.approvalStatus}</span>
             </span>
@@ -104,7 +104,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               <span className="text-[10px] font-bold tracking-wider text-[#8F6B28] uppercase block">
                 Plot Range
               </span>
-              <span className="font-serif font-bold text-sm sm:text-base text-[#460C14]">
+              <span className="font-serif font-bold text-sm sm:text-base text-[#520B0B]">
                 {property.plotSize.split('(')[0]}
               </span>
             </div>
@@ -112,7 +112,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               <span className="text-[10px] font-bold tracking-wider text-[#8F6B28] uppercase block">
                 Cents
               </span>
-              <span className="font-serif font-bold text-sm sm:text-base text-[#460C14]">
+              <span className="font-serif font-bold text-sm sm:text-base text-[#520B0B]">
                 {property.plotSize.includes('(')
                   ? property.plotSize.split('(')[1].replace(')', '')
                   : '3 - 10 Cents'}
@@ -122,7 +122,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               <span className="text-[10px] font-bold tracking-wider text-[#8F6B28] uppercase block">
                 Status
               </span>
-              <span className="font-serif font-bold text-sm sm:text-base text-[#731622]">
+              <span className="font-serif font-bold text-sm sm:text-base text-[#881616]">
                 Ready to Register
               </span>
             </div>
@@ -130,7 +130,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               <span className="text-[10px] font-bold tracking-wider text-[#8F6B28] uppercase block">
                 RERA Reg.
               </span>
-              <span className="font-mono text-xs font-semibold text-[#460C14]">
+              <span className="font-mono text-xs font-semibold text-[#520B0B]">
                 {property.reraNo}
               </span>
             </div>
@@ -138,49 +138,49 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
           {/* Overview */}
           <div>
-            <h3 className="font-serif text-xl font-bold text-[#460C14] mb-2">
+            <h3 className="font-serif text-xl font-bold text-[#520B0B] mb-2">
               Project Overview
             </h3>
-            <p className="text-sm text-[#5C131D]/85 leading-relaxed font-light">
+            <p className="text-sm text-[#6E1010]/85 leading-relaxed font-light">
               {overview}
             </p>
           </div>
 
           {/* Specifications */}
           <div>
-            <h3 className="font-serif text-xl font-bold text-[#460C14] mb-3">
+            <h3 className="font-serif text-xl font-bold text-[#520B0B] mb-3">
               Infrastructure & Civil Specifications
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="p-3 bg-white rounded-lg border border-[#E7DFD4] flex items-center gap-3">
-                <Milestone className="w-4 h-4 text-[#731622]" />
+                <Milestone className="w-4 h-4 text-[#881616]" />
                 <div>
-                  <span className="font-bold block text-[#460C14]">Road Infrastructure</span>
-                  <span className="text-[#5C131D]/80">{property.specifications.roadWidth}</span>
+                  <span className="font-bold block text-[#520B0B]">Road Infrastructure</span>
+                  <span className="text-[#6E1010]/80">{property.specifications.roadWidth}</span>
                 </div>
               </div>
 
               <div className="p-3 bg-white rounded-lg border border-[#E7DFD4] flex items-center gap-3">
                 <Droplets className="w-4 h-4 text-[#8F6B28]" />
                 <div>
-                  <span className="font-bold block text-[#460C14]">Water Facility</span>
-                  <span className="text-[#5C131D]/80">{property.specifications.waterSource}</span>
+                  <span className="font-bold block text-[#520B0B]">Water Facility</span>
+                  <span className="text-[#6E1010]/80">{property.specifications.waterSource}</span>
                 </div>
               </div>
 
               <div className="p-3 bg-white rounded-lg border border-[#E7DFD4] flex items-center gap-3">
-                <Zap className="w-4 h-4 text-[#731622]" />
+                <Zap className="w-4 h-4 text-[#881616]" />
                 <div>
-                  <span className="font-bold block text-[#460C14]">Power Supply</span>
-                  <span className="text-[#5C131D]/80">{property.specifications.electricity}</span>
+                  <span className="font-bold block text-[#520B0B]">Power Supply</span>
+                  <span className="text-[#6E1010]/80">{property.specifications.electricity}</span>
                 </div>
               </div>
 
               <div className="p-3 bg-white rounded-lg border border-[#E7DFD4] flex items-center gap-3">
                 <ShieldCheck className="w-4 h-4 text-[#8F6B28]" />
                 <div>
-                  <span className="font-bold block text-[#460C14]">Enclosure & Boundary</span>
-                  <span className="text-[#5C131D]/80">{property.specifications.boundary}</span>
+                  <span className="font-bold block text-[#520B0B]">Enclosure & Boundary</span>
+                  <span className="text-[#6E1010]/80">{property.specifications.boundary}</span>
                 </div>
               </div>
             </div>
@@ -188,12 +188,12 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
           {/* Key Highlights */}
           <div>
-            <h3 className="font-serif text-xl font-bold text-[#460C14] mb-2.5">
+            <h3 className="font-serif text-xl font-bold text-[#520B0B] mb-2.5">
               Approved Highlights
             </h3>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               {highlights.map((h, i) => (
-                <li key={i} className="flex items-start gap-2 text-[#460C14]">
+                <li key={i} className="flex items-start gap-2 text-[#520B0B]">
                   <CheckCircle2 className="w-4 h-4 text-[#8F6B28] shrink-0 mt-0.5" />
                   <span>{h}</span>
                 </li>
@@ -203,7 +203,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
           {/* Nearby Landmarks */}
           <div>
-            <h3 className="font-serif text-xl font-bold text-[#460C14] mb-2.5">
+            <h3 className="font-serif text-xl font-bold text-[#520B0B] mb-2.5">
               Strategic Connectivity & Proximities
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
@@ -225,7 +225,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <button
               onClick={handleDownloadBrochure}
-              className="flex-1 sm:flex-initial py-2.5 px-4 rounded-lg bg-[#FAF8F5] hover:bg-[#F4EFE8] text-[#5C131D] text-xs font-bold uppercase tracking-wider border border-[#C5A059]/40 flex items-center justify-center gap-1.5 cursor-pointer"
+              className="flex-1 sm:flex-initial py-2.5 px-4 rounded-lg bg-[#FAF8F5] hover:bg-[#F4EFE8] text-[#6E1010] text-xs font-bold uppercase tracking-wider border border-[#C5A059]/40 flex items-center justify-center gap-1.5 cursor-pointer"
             >
               <Download className="w-3.5 h-3.5 text-[#8F6B28]" />
               <span>{downloaded ? 'Brochure Downloaded!' : 'Download Brochure'}</span>
@@ -249,7 +249,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               onClose();
               onRequestSiteVisit(property);
             }}
-            className="w-full sm:w-auto py-2.5 px-6 rounded-lg bg-[#731622] hover:bg-[#5C131D] text-white text-xs font-bold uppercase tracking-wider shadow-sm flex items-center justify-center gap-2 cursor-pointer border border-[#C5A059]/30"
+            className="w-full sm:w-auto py-2.5 px-6 rounded-lg bg-[#881616] hover:bg-[#6E1010] text-white text-xs font-bold uppercase tracking-wider shadow-sm flex items-center justify-center gap-2 cursor-pointer border border-[#C5A059]/30"
           >
             <Calendar className="w-4 h-4 text-[#DCBA77]" />
             <span>Book Site Visit for this Project</span>

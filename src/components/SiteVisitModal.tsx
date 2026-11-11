@@ -57,18 +57,18 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative max-w-xl w-full bg-[#FAF8F5] rounded-2xl overflow-hidden border border-[#C5A059]/40 shadow-2xl my-auto text-[#460C14]"
+        className="relative max-w-xl w-full bg-[#FAF8F5] rounded-2xl overflow-hidden border border-[#C5A059]/40 shadow-2xl my-auto text-[#520B0B]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/10 hover:bg-[#731622] hover:text-white transition-colors cursor-pointer"
+          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/10 hover:bg-[#881616] hover:text-white transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Header */}
-        <div className="bg-[#5C131D] text-white p-6 sm:p-7 border-b border-[#C5A059]/30">
+        <div className="bg-[#6E1010] text-white p-6 sm:p-7 border-b border-[#C5A059]/30">
           <span className="text-[10px] font-bold tracking-widest text-[#DCBA77] uppercase block mb-1">
             MSP PROPERTIES CONCIERGE
           </span>
@@ -87,10 +87,10 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
               <div className="w-14 h-14 rounded-full bg-[#25D366]/10 text-[#075E54] flex items-center justify-center mx-auto border border-[#25D366]/30">
                 <CheckCircle2 className="w-7 h-7 text-[#25D366]" />
               </div>
-              <h4 className="font-serif text-2xl font-bold text-[#460C14]">
+              <h4 className="font-serif text-2xl font-bold text-[#520B0B]">
                 Visit Request Confirmed!
               </h4>
-              <p className="text-xs sm:text-sm text-[#5C131D]/80 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#6E1010]/80 leading-relaxed">
                 Thank you, <strong>{fullName}</strong>. Our site coordinator will reach out shortly to verify your timing and chauffeur details.
               </p>
 
@@ -107,7 +107,7 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
 
                 <button
                   onClick={onClose}
-                  className="w-full py-2.5 px-4 rounded-xl bg-white border border-[#E7DFD4] text-[#5C131D] text-xs font-semibold"
+                  className="w-full py-2.5 px-4 rounded-xl bg-white border border-[#E7DFD4] text-[#6E1010] text-xs font-semibold"
                 >
                   Close Window
                 </button>
@@ -117,7 +117,7 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs font-bold text-[#460C14] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#520B0B] uppercase tracking-wider mb-1">
                     Your Name *
                   </label>
                   <input
@@ -126,12 +126,12 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="e.g. Ramesh Kumar"
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-[#E7DFD4] bg-white focus:outline-none focus:border-[#731622]"
+                    className="w-full px-3 py-2 text-xs rounded-lg border border-[#E7DFD4] bg-white focus:outline-none focus:border-[#881616]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#460C14] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#520B0B] uppercase tracking-wider mb-1">
                     Phone Number (WhatsApp) *
                   </label>
                   <input
@@ -140,19 +140,19 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="e.g. 98422 12345"
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-[#E7DFD4] bg-white focus:outline-none focus:border-[#731622]"
+                    className="w-full px-3 py-2 text-xs rounded-lg border border-[#E7DFD4] bg-white focus:outline-none focus:border-[#881616]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#460C14] uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-[#520B0B] uppercase tracking-wider mb-1">
                   Selected Development *
                 </label>
                 <select
                   value={selectedProject}
                   onChange={(e) => setSelectedProject(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-lg border border-[#E7DFD4] bg-white focus:outline-none focus:border-[#731622]"
+                  className="w-full px-3 py-2 text-xs rounded-lg border border-[#E7DFD4] bg-white focus:outline-none focus:border-[#881616]"
                 >
                   {properties.map((p) => (
                     <option key={p.id} value={p.name}>
@@ -164,25 +164,25 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs font-bold text-[#460C14] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#520B0B] uppercase tracking-wider mb-1">
                     Preferred Date
                   </label>
                   <input
                     type="date"
                     value={preferredDate}
                     onChange={(e) => setPreferredDate(e.target.value)}
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-[#E7DFD4] bg-white focus:outline-none focus:border-[#731622]"
+                    className="w-full px-3 py-2 text-xs rounded-lg border border-[#E7DFD4] bg-white focus:outline-none focus:border-[#881616]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#460C14] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#520B0B] uppercase tracking-wider mb-1">
                     Preferred Slot
                   </label>
                   <select
                     value={timeSlot}
                     onChange={(e) => setTimeSlot(e.target.value)}
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-[#E7DFD4] bg-white focus:outline-none focus:border-[#731622]"
+                    className="w-full px-3 py-2 text-xs rounded-lg border border-[#E7DFD4] bg-white focus:outline-none focus:border-[#881616]"
                   >
                     <option value="10:00 AM - 01:00 PM">Morning Slot (10 AM - 1 PM)</option>
                     <option value="02:00 PM - 05:00 PM">Afternoon Slot (2 PM - 5 PM)</option>
@@ -194,8 +194,8 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
               {/* Cab Pickup Toggle */}
               <div className="p-3 bg-white rounded-lg border border-[#E7DFD4] flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Car className="w-4 h-4 text-[#731622]" />
-                  <span className="text-xs font-bold text-[#460C14]">
+                  <Car className="w-4 h-4 text-[#881616]" />
+                  <span className="text-xs font-bold text-[#520B0B]">
                     Require Complimentary AC Cab Pickup?
                   </span>
                 </div>
@@ -203,7 +203,7 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                   type="checkbox"
                   checked={pickupNeeded}
                   onChange={(e) => setPickupNeeded(e.target.checked)}
-                  className="w-4 h-4 accent-[#731622]"
+                  className="w-4 h-4 accent-[#881616]"
                 />
               </div>
 
@@ -217,8 +217,8 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                       onClick={() => setPickupCity(city)}
                       className={`px-3 py-1 rounded-md text-xs font-medium border ${
                         pickupCity === city
-                          ? 'bg-[#5C131D] text-white border-[#5C131D]'
-                          : 'bg-white text-[#460C14] border-[#E7DFD4]'
+                          ? 'bg-[#6E1010] text-white border-[#6E1010]'
+                          : 'bg-white text-[#520B0B] border-[#E7DFD4]'
                       }`}
                     >
                       {city}
@@ -229,7 +229,7 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
 
               <button
                 type="submit"
-                className="w-full py-3 px-4 rounded-xl bg-[#731622] hover:bg-[#5C131D] text-white font-bold text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 cursor-pointer border border-[#C5A059]/30"
+                className="w-full py-3 px-4 rounded-xl bg-[#881616] hover:bg-[#6E1010] text-white font-bold text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 cursor-pointer border border-[#C5A059]/30"
               >
                 <Send className="w-4 h-4 text-[#DCBA77]" />
                 <span>Confirm Free Site Visit</span>

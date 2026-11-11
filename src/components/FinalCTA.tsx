@@ -15,7 +15,7 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({
   const t = TRANSLATIONS[language];
 
   return (
-    <section className="py-20 lg:py-24 bg-[#460C14] text-white relative overflow-hidden">
+    <section className="py-20 lg:py-24 bg-[#520B0B] text-white relative overflow-hidden">
       {/* Background ambient gold luxury glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -38,9 +38,9 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={onOpenSiteVisit}
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#C5A059] hover:bg-[#DCBA77] text-[#2E050B] font-bold text-xs uppercase tracking-wider transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2 border border-[#EAD09C]"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#C5A059] hover:bg-[#DCBA77] text-[#380606] font-bold text-xs uppercase tracking-wider transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2 border border-[#EAD09C]"
           >
-            <Compass className="w-4 h-4 text-[#2E050B]" />
+            <Compass className="w-4 h-4 text-[#380606]" />
             <span>{t.cta.btn1}</span>
           </button>
 

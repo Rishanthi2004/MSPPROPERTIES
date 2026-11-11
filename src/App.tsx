@@ -90,7 +90,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#222222] font-sans antialiased selection:bg-[#731622] selection:text-[#FAF8F5]">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#222222] font-sans antialiased selection:bg-[#881616] selection:text-[#FAF8F5]">
       {/* 1. NAVBAR */}
       <Navbar
         language={language}

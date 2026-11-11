@@ -3,11 +3,11 @@
 @theme {
   --font-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --color-maroon-950: #2E050B;
-  --color-maroon-900: #460C14;
-  --color-maroon-800: #5C131D;
-  --color-maroon-700: #731622;
-  --color-maroon-600: #8E1F2E;
+  --color-maroon-950: #380606;
+  --color-maroon-900: #520B0B;
+  --color-maroon-800: #6E1010;
+  --color-maroon-700: #881616;
+  --color-maroon-600: #A31D1D;
   --color-gold-700: #8F6B28;
   --color-gold-600: #A8813B;
   --color-gold-500: #C5A059;
@@ -74,5 +74,5 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #731622;
+  background: #881616;
 }

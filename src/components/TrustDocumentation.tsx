@@ -59,17 +59,17 @@ export const TrustDocumentation: React.FC<TrustDocumentationProps> = ({
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F7EFE1] border border-[#C5A059]/40 text-[#8F6B28] mb-4">
-            <ShieldCheck className="w-4 h-4 text-[#731622]" />
+            <ShieldCheck className="w-4 h-4 text-[#881616]" />
             <span className="text-xs font-bold tracking-[0.2em] uppercase">
               {t.trust.tag}
             </span>
           </div>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#460C14] tracking-tight mb-4">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#520B0B] tracking-tight mb-4">
             {t.trust.title}
           </h2>
 
-          <p className="text-base sm:text-lg text-[#5C131D]/80 leading-relaxed font-light">
+          <p className="text-base sm:text-lg text-[#6E1010]/80 leading-relaxed font-light">
             {t.trust.subtitle}
           </p>
         </div>
@@ -77,13 +77,13 @@ export const TrustDocumentation: React.FC<TrustDocumentationProps> = ({
         {/* 4 Trust Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           <div className="bg-white p-6 rounded-2xl border border-[#E7DFD4] shadow-xs hover:border-[#C5A059] transition-all">
-            <div className="w-11 h-11 rounded-lg bg-[#FAF8F5] border border-[#E7DFD4] flex items-center justify-center text-[#731622] mb-4">
-              <FileCheck className="w-5 h-5 text-[#731622]" />
+            <div className="w-11 h-11 rounded-lg bg-[#FAF8F5] border border-[#E7DFD4] flex items-center justify-center text-[#881616] mb-4">
+              <FileCheck className="w-5 h-5 text-[#881616]" />
             </div>
-            <h3 className="font-serif text-lg font-bold text-[#460C14] mb-2">
+            <h3 className="font-serif text-lg font-bold text-[#520B0B] mb-2">
               {t.trust.box1Title}
             </h3>
-            <p className="text-xs sm:text-sm text-[#5C131D]/80 leading-relaxed font-light">
+            <p className="text-xs sm:text-sm text-[#6E1010]/80 leading-relaxed font-light">
               {t.trust.box1Desc}
             </p>
           </div>
@@ -92,22 +92,22 @@ export const TrustDocumentation: React.FC<TrustDocumentationProps> = ({
             <div className="w-11 h-11 rounded-lg bg-[#FAF8F5] border border-[#E7DFD4] flex items-center justify-center text-[#8F6B28] mb-4">
               <Lock className="w-5 h-5 text-[#8F6B28]" />
             </div>
-            <h3 className="font-serif text-lg font-bold text-[#460C14] mb-2">
+            <h3 className="font-serif text-lg font-bold text-[#520B0B] mb-2">
               {t.trust.box2Title}
             </h3>
-            <p className="text-xs sm:text-sm text-[#5C131D]/80 leading-relaxed font-light">
+            <p className="text-xs sm:text-sm text-[#6E1010]/80 leading-relaxed font-light">
               {t.trust.box2Desc}
             </p>
           </div>
 
           <div className="bg-white p-6 rounded-2xl border border-[#E7DFD4] shadow-xs hover:border-[#C5A059] transition-all">
-            <div className="w-11 h-11 rounded-lg bg-[#FAF8F5] border border-[#E7DFD4] flex items-center justify-center text-[#731622] mb-4">
-              <FileText className="w-5 h-5 text-[#731622]" />
+            <div className="w-11 h-11 rounded-lg bg-[#FAF8F5] border border-[#E7DFD4] flex items-center justify-center text-[#881616] mb-4">
+              <FileText className="w-5 h-5 text-[#881616]" />
             </div>
-            <h3 className="font-serif text-lg font-bold text-[#460C14] mb-2">
+            <h3 className="font-serif text-lg font-bold text-[#520B0B] mb-2">
               {t.trust.box3Title}
             </h3>
-            <p className="text-xs sm:text-sm text-[#5C131D]/80 leading-relaxed font-light">
+            <p className="text-xs sm:text-sm text-[#6E1010]/80 leading-relaxed font-light">
               {t.trust.box3Desc}
             </p>
           </div>
@@ -116,10 +116,10 @@ export const TrustDocumentation: React.FC<TrustDocumentationProps> = ({
             <div className="w-11 h-11 rounded-lg bg-[#FAF8F5] border border-[#E7DFD4] flex items-center justify-center text-[#8F6B28] mb-4">
               <Building className="w-5 h-5 text-[#8F6B28]" />
             </div>
-            <h3 className="font-serif text-lg font-bold text-[#460C14] mb-2">
+            <h3 className="font-serif text-lg font-bold text-[#520B0B] mb-2">
               {t.trust.box4Title}
             </h3>
-            <p className="text-xs sm:text-sm text-[#5C131D]/80 leading-relaxed font-light">
+            <p className="text-xs sm:text-sm text-[#6E1010]/80 leading-relaxed font-light">
               {t.trust.box4Desc}
             </p>
           </div>
@@ -132,10 +132,10 @@ export const TrustDocumentation: React.FC<TrustDocumentationProps> = ({
               <span className="text-xs font-bold tracking-widest text-[#8F6B28] uppercase block mb-2">
                 TRANSPARENCY STANDARD
               </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#460C14] mb-4">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#520B0B] mb-4">
                 What We Hand Over Before You Pay a Single Rupee
               </h3>
-              <p className="text-sm text-[#5C131D]/85 leading-relaxed font-light mb-6">
+              <p className="text-sm text-[#6E1010]/85 leading-relaxed font-light mb-6">
                 We believe you should have total clarity before making your commitment. You can request a certified copy of the parent link document, approved DTCP master layout drawing, and government revenue patta for any plot:
               </p>
 
@@ -144,10 +144,10 @@ export const TrustDocumentation: React.FC<TrustDocumentationProps> = ({
                   <div key={cIdx} className="flex items-start gap-3">
                     <CheckCircle2 className="w-4 h-4 text-[#8F6B28] shrink-0 mt-1" />
                     <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-[#460C14]">
+                      <h4 className="text-xs sm:text-sm font-bold text-[#520B0B]">
                         {item.title}
                       </h4>
-                      <p className="text-xs text-[#5C131D]/80 font-light">
+                      <p className="text-xs text-[#6E1010]/80 font-light">
                         {item.desc}
                       </p>
                     </div>
@@ -158,28 +158,28 @@ export const TrustDocumentation: React.FC<TrustDocumentationProps> = ({
 
             {/* Approved Banks & Download Callout */}
             <div className="lg:col-span-5 bg-[#FAF8F5] p-6 sm:p-7 rounded-xl border border-[#E7DFD4]">
-              <h4 className="font-serif text-xl font-bold text-[#460C14] mb-3">
+              <h4 className="font-serif text-xl font-bold text-[#520B0B] mb-3">
                 Pre-Approved Bank Partnerships
               </h4>
-              <p className="text-xs text-[#5C131D]/80 mb-5 font-light">
+              <p className="text-xs text-[#6E1010]/80 mb-5 font-light">
                 Our layouts enjoy express loan sanctions up to 80% with flexible tenures up to 20 years:
               </p>
 
               <div className="grid grid-cols-2 gap-2.5 mb-6">
                 <div className="p-3 bg-white rounded-lg border border-[#E7DFD4] text-center shadow-2xs">
-                  <p className="font-bold text-xs text-[#460C14]">State Bank of India</p>
+                  <p className="font-bold text-xs text-[#520B0B]">State Bank of India</p>
                   <p className="text-[10px] text-[#8F6B28]">SBI Realty Loan</p>
                 </div>
                 <div className="p-3 bg-white rounded-lg border border-[#E7DFD4] text-center shadow-2xs">
-                  <p className="font-bold text-xs text-[#460C14]">HDFC Bank</p>
+                  <p className="font-bold text-xs text-[#520B0B]">HDFC Bank</p>
                   <p className="text-[10px] text-[#8F6B28]">Plot + Construction</p>
                 </div>
                 <div className="p-3 bg-white rounded-lg border border-[#E7DFD4] text-center shadow-2xs">
-                  <p className="font-bold text-xs text-[#460C14]">ICICI Bank</p>
+                  <p className="font-bold text-xs text-[#520B0B]">ICICI Bank</p>
                   <p className="text-[10px] text-[#8F6B28]">Fast Track Approvals</p>
                 </div>
                 <div className="p-3 bg-white rounded-lg border border-[#E7DFD4] text-center shadow-2xs">
-                  <p className="font-bold text-xs text-[#460C14]">Canara Bank</p>
+                  <p className="font-bold text-xs text-[#520B0B]">Canara Bank</p>
                   <p className="text-[10px] text-[#8F6B28]">Nationalized Scheme</p>
                 </div>
               </div>
@@ -187,7 +187,7 @@ export const TrustDocumentation: React.FC<TrustDocumentationProps> = ({
               {/* Action: Legal Checklist Guide Download */}
               <button
                 onClick={handleDownload}
-                className="w-full py-3 px-4 rounded-lg bg-[#5C131D] hover:bg-[#460C14] text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                className="w-full py-3 px-4 rounded-lg bg-[#6E1010] hover:bg-[#520B0B] text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
               >
                 <Download className="w-4 h-4 text-[#DCBA77]" />
                 <span>{t.trust.btnDownloadBrochure}</span>
